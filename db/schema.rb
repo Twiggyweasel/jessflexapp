@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_20_024148) do
+ActiveRecord::Schema.define(version: 2021_01_20_142119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.string "name"
+    t.string "simple_desc"
+    t.string "detail_desc"
+    t.integer "location"
+    t.integer "category"
+    t.integer "set_label"
+    t.integer "weight"
+    t.integer "rep"
+    t.integer "set"
+    t.boolean "machine_based", default: false
+    t.boolean "has_weight", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"

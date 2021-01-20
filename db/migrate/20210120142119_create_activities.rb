@@ -9,7 +9,7 @@ class CreateActivities < ActiveRecord::Migration[6.1]
       #enums      
       t.integer :location
       t.integer :category
-      t.integer :set_type
+      t.integer :set_label
 
       #integers
       t.integer :weight
