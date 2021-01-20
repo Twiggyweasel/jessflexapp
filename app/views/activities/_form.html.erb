@@ -1,0 +1,72 @@
+<%= form_with(model: activity) do |form| %>
+  <% if activity.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
+
+      <ul>
+        <% activity.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :machine_based %>
+    <%= form.check_box :machine_based %>
+  </div>
+
+  <div class="field">
+    <%= form.label :has_weight %>
+    <%= form.check_box :has_weight %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weight %>
+    <%= form.number_field :weight %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rep %>
+    <%= form.number_field :rep %>
+  </div>
+
+  <div class="field">
+    <%= form.label :set %>
+    <%= form.number_field :set %>
+  </div>
+
+  <div class="field">
+    <%= form.label :set_type %>
+    <%= form.number_field :set_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :simple_desc %>
+    <%= form.text_field :simple_desc %>
+  </div>
+
+  <div class="field">
+    <%= form.label :detail_desc %>
+    <%= form.text_field :detail_desc %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_field :location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category %>
+    <%= form.number_field :category %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
