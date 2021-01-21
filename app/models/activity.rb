@@ -1,5 +1,5 @@
 class Activity < ApplicationRecord
-  enum location: [:home, :gym]
+  enum location: [:gym, :anywhere]
   enum category: [:upper_body, :lower_body, :abs, :HIIT]
   enum set_label: [:number, :minutes, :seconds]
 
