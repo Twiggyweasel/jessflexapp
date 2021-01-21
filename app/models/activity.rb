@@ -13,7 +13,3 @@ class Activity < ApplicationRecord
   validates :has_weight, inclusion: { in: [true, false] }
   validates :machine_based, inclusion: { in: [true, false] }
 end
-
-  # validates :rep, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 50 }
-  # validates :set, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 10 }
-  # validates :weight, presence: true if -> { has_weight }
