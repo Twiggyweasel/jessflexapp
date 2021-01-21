@@ -17,36 +17,6 @@
   </div>
 
   <div class="field">
-    <%= form.label :machine_based %>
-    <%= form.check_box :machine_based %>
-  </div>
-
-  <div class="field">
-    <%= form.label :has_weight %>
-    <%= form.check_box :has_weight %>
-  </div>
-
-  <div class="field">
-    <%= form.label :weight %>
-    <%= form.number_field :weight %>
-  </div>
-
-  <div class="field">
-    <%= form.label :rep %>
-    <%= form.number_field :rep %>
-  </div>
-
-  <div class="field">
-    <%= form.label :set %>
-    <%= form.number_field :set %>
-  </div>
-
-  <div class="field">
-    <%= form.label :set_type %>
-    <%= form.number_field :set_type %>
-  </div>
-
-  <div class="field">
     <%= form.label :simple_desc %>
     <%= form.text_field :simple_desc %>
   </div>
@@ -58,12 +28,27 @@
 
   <div class="field">
     <%= form.label :location %>
-    <%= form.text_field :location %>
+    <%= form.number_field :location %>
   </div>
 
   <div class="field">
     <%= form.label :category %>
     <%= form.number_field :category %>
+  </div>
+
+  <div class="field">
+    <%= form.label :set_label %>
+    <%= form.number_field :set_label %>
+  </div>
+
+  <div class="field">
+    <%= form.label :has_weight %>
+    <%= form.check_box :has_weight %>
+  </div>
+
+  <div class="field">
+    <%= form.label :machine_based %>
+    <%= form.check_box :machine_based %>
   </div>
 
   <div class="actions">
