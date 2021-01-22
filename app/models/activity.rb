@@ -1,6 +1,7 @@
 class Activity < ApplicationRecord
   #relationships
   has_one :machine
+  has_many :activity_blocks
 
   enum location: [:gym, :anywhere]
   enum category: [:upper_body, :lower_body, :abs, :HIIT]
