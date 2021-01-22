@@ -1,4 +1,7 @@
 class Activity < ApplicationRecord
+  #relationships
+  has_one :machine
+
   enum location: [:gym, :anywhere]
   enum category: [:upper_body, :lower_body, :abs, :HIIT]
   enum set_label: [:number, :minutes, :seconds]

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :machines
   resources :activity_blocks
   resources :activities
   resources :users
