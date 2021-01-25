@@ -1,7 +1,8 @@
 class Activity < ApplicationRecord
   #relationships
   has_one :machine
-  has_many :activity_blocks
+  has_many :activity_variations
+  has_many :activity_sets
 
   enum location: [:gym, :anywhere]
   enum category: [:upper_body, :lower_body, :abs, :HIIT]
@@ -17,3 +18,4 @@ class Activity < ApplicationRecord
   validates :has_weight, inclusion: { in: [true, false] }
   validates :machine_based, inclusion: { in: [true, false] }
 end
+

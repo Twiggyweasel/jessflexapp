@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  resources :activity_variations
   resources :machines
-  resources :activity_blocks
   resources :activities
   resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

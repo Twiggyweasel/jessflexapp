@@ -1,0 +1,42 @@
+<%= form_with(model: activity_variation) do |form| %>
+  <% if activity_variation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(activity_variation.errors.count, "error") %> prohibited this activity_variation from being saved:</h2>
+
+      <ul>
+        <% activity_variation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :difficulty %>
+    <%= form.number_field :difficulty %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weight %>
+    <%= form.number_field :weight %>
+  </div>
+
+  <div class="field">
+    <%= form.label :set %>
+    <%= form.number_field :set %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rep %>
+    <%= form.number_field :rep %>
+  </div>
+
+  <div class="field">
+    <%= form.label :activity_id %>
+    <%= form.text_field :activity_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

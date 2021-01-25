@@ -28,17 +28,17 @@
 
   <div class="field">
     <%= form.label :location %>
-    <%= form.number_field :location %>
+    <%= form.select(:location, Activity.locations.keys.map { |location| [location.titleize, location]}) %>
   </div>
 
   <div class="field">
     <%= form.label :category %>
-    <%= form.number_field :category %>
+    <%= form.select(:category, Activity.categories.keys.map { |category| [category.titleize, category]}) %>
   </div>
 
   <div class="field">
     <%= form.label :set_label %>
-    <%= form.number_field :set_label %>
+    <%= form.select(:set_label, Activity.set_labels.keys.map { |label| [label.titleize, label]}) %>
   </div>
 
   <div class="field">

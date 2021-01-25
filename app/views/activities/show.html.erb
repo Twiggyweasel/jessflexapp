@@ -1,44 +1,61 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @activity.name %>
-</p>
-
-<p>
-  <strong>Simple desc:</strong>
-  <%= @activity.simple_desc %>
-</p>
-
-<p>
-  <strong>Detail desc:</strong>
-  <%= @activity.detail_desc %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @activity.location %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @activity.category %>
-</p>
-
-<p>
-  <strong>Set label:</strong>
-  <%= @activity.set_label %>
-</p>
-
-<p>
-  <strong>Has weight:</strong>
-  <%= @activity.has_weight %>
-</p>
-
-<p>
-  <strong>Machine based:</strong>
-  <%= @activity.machine_based %>
-</p>
 
 <%= link_to 'Edit', edit_activity_path(@activity) %> |
 <%= link_to 'Back', activities_path %>
+
+<h1>Activity: <%= @activity.name %></h1>
+<section>
+  <p><strong>Simple Description</strong><br><%= @activity.simple_desc%></p>
+
+  <p><strong>Detail Description</strong><br><%= @activity.detail_desc %></p>
+</section>
+
+<section>
+  <p>
+    <strong>Location:</strong>
+    <%= @activity.location %>
+  </p>
+
+  <p>
+    <strong>Category:</strong>
+    <%= @activity.category %>
+  </p>
+
+  <p>
+    <strong>Set label:</strong>
+    <%= @activity.set_label %>
+  </p>
+
+  <p>
+    <strong>Has weight:</strong>
+    <%= @activity.has_weight %>
+  </p>
+
+  <p>
+    <strong>Machine based:</strong>
+    <%= @activity.machine_based %>
+  </p>
+</section>
+
+<h2>Variations</h2>
+
+<%= link_to 'add variation', new_activity_variation_path() %>
+<table>
+  <thead>
+    <%- if @activity.has_weight %><th>Weight</th><% end %>
+    <th>Set</th>
+    <th>Reps</th>
+    <th>Difficulty</th>
+  </thead>
+  <tbody>
+    <% @activity.activity_variations.each do |activity_variation| %>
+      <tr>
+        <%- if @activity.has_weight == true %><td><%= activity_variation.weight %></td><% end %>
+        <td><%= activity_variation.set %></td>
+        <td><%= activity_variation.rep %></td>
+        <td><%= activity_variation.difficulty.titleize%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
