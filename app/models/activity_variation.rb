@@ -1,3 +1,5 @@
+# Varitation on activities allowing for custom sets, reps, weight etc
+
 class ActivityVariation < ApplicationRecord
   belongs_to :activity
 

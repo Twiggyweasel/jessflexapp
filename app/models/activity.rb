@@ -1,5 +1,7 @@
+# defines the defaults for an activity record to be used in variates and workouts
+
 class Activity < ApplicationRecord
-  #relationships
+  # relationships
   has_one :machine
   has_many :activity_variations
   has_many :activity_sets
