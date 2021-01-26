@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ActivitiesController < ApplicationController
-  before_action :set_activity, only: [:show, :edit, :update, :destroy]
+  before_action :set_activity, only: %i[show edit update destroy]
 
   # GET /activities
   # GET /activities.json
@@ -9,8 +11,7 @@ class ActivitiesController < ApplicationController
 
   # GET /activities/1
   # GET /activities/1.json
-  def show
-  end
+  def show; end
 
   # GET /activities/new
   def new
@@ -18,8 +19,7 @@ class ActivitiesController < ApplicationController
   end
 
   # GET /activities/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /activities
   # POST /activities.json
@@ -62,13 +62,15 @@ class ActivitiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_activity
-      @activity = Activity.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def activity_params
-      params.require(:activity).permit(:name, :simple_desc, :detail_desc, :location, :category, :set_label, :has_weight, :machine_based)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_activity
+    @activity = Activity.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def activity_params
+    params.require(:activity).permit(:name, :simple_desc, :detail_desc, :location, :category, :set_label,
+                                     :has_weight, :machine_based)
+  end
 end

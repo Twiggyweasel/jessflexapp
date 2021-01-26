@@ -1,14 +1,12 @@
 # defines the defaults for an activity record to be used in variates and workouts
-
 class Activity < ApplicationRecord
   # relationships
-  has_one :machine
-  has_many :activity_variations
-  has_many :activity_sets
+  has_one :machine, dependent: :nullify
+  has_many :activity_variations, dependent: :destroy
 
-  enum location: [:gym, :anywhere]
-  enum category: [:upper_body, :lower_body, :abs, :HIIT]
-  enum set_label: [:number, :minutes, :seconds]
+  enum location: { gym: 0, anywhere: 1 }
+  enum category: { upper_body: 0, lower_body: 1, abs: 2, HIIT: 3 }
+  enum set_label: { number: 0, minutes: 1, seconds: 2 }
 
   validates :name, presence: true, uniqueness: true, length: { in: 6..30 }
   validates :simple_desc, presence: true, length: { in: 6..60 }
@@ -20,4 +18,3 @@ class Activity < ApplicationRecord
   validates :has_weight, inclusion: { in: [true, false] }
   validates :machine_based, inclusion: { in: [true, false] }
 end
-

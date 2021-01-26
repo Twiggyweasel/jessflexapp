@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ActivityVariationsController < ApplicationController
-  before_action :set_activity_variation, only: [:show, :edit, :update, :destroy]
+  before_action :set_activity_variation, only: %i[show edit update destroy]
 
   # GET /activity_variations
   # GET /activity_variations.json
@@ -9,8 +11,7 @@ class ActivityVariationsController < ApplicationController
 
   # GET /activity_variations/1
   # GET /activity_variations/1.json
-  def show
-  end
+  def show; end
 
   # GET /activity_variations/new
   def new
@@ -18,8 +19,7 @@ class ActivityVariationsController < ApplicationController
   end
 
   # GET /activity_variations/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /activity_variations
   # POST /activity_variations.json
@@ -62,13 +62,14 @@ class ActivityVariationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_activity_variation
-      @activity_variation = ActivityVariation.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def activity_variation_params
-      params.require(:activity_variation).permit(:difficulty, :weight, :set, :rep, :activity_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_activity_variation
+    @activity_variation = ActivityVariation.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def activity_variation_params
+    params.require(:activity_variation).permit(:difficulty, :weight, :set, :rep, :activity_id)
+  end
 end

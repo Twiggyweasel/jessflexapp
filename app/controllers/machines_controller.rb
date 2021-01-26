@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class MachinesController < ApplicationController
-  before_action :set_machine, only: [:show, :edit, :update, :destroy]
+  before_action :set_machine, only: %i[show edit update destroy]
 
   # GET /machines
   # GET /machines.json
@@ -9,8 +11,7 @@ class MachinesController < ApplicationController
 
   # GET /machines/1
   # GET /machines/1.json
-  def show
-  end
+  def show; end
 
   # GET /machines/new
   def new
@@ -18,8 +19,7 @@ class MachinesController < ApplicationController
   end
 
   # GET /machines/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /machines
   # POST /machines.json
@@ -62,13 +62,14 @@ class MachinesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_machine
-      @machine = Machine.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def machine_params
-      params.require(:machine).permit(:name, :notes, :activity_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_machine
+    @machine = Machine.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def machine_params
+    params.require(:machine).permit(:name, :notes, :activity_id)
+  end
 end

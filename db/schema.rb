@@ -26,12 +26,7 @@ ActiveRecord::Schema.define(version: 2021_01_24_195354) do
     t.boolean "machine_based"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "activity_sets", force: :cascade do |t|
-    t.integer "order"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_activities_on_name", unique: true
   end
 
   create_table "activity_variations", force: :cascade do |t|
@@ -43,20 +38,6 @@ ActiveRecord::Schema.define(version: 2021_01_24_195354) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["activity_id"], name: "index_activity_variations_on_activity_id"
-  end
-
-  create_table "challenge_sets", force: :cascade do |t|
-    t.integer "order"
-    t.bigint "challenge_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["challenge_id"], name: "index_challenge_sets_on_challenge_id"
-  end
-
-  create_table "challenges", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "machines", force: :cascade do |t|
@@ -76,6 +57,5 @@ ActiveRecord::Schema.define(version: 2021_01_24_195354) do
   end
 
   add_foreign_key "activity_variations", "activities"
-  add_foreign_key "challenge_sets", "challenges"
   add_foreign_key "machines", "activities"
 end
