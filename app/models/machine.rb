@@ -1,6 +1,7 @@
 # Machines used in various acivities
 class Machine < ApplicationRecord
-  belongs_to :activity
+  has_many :machine_activities, dependent: :destroy
+  has_many :activities, through: :machine_activities
 
-  validates :name, presense: true
+  validates :name, presence: true
 end

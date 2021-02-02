@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_24_195354) do
+ActiveRecord::Schema.define(version: 2021_02_02_174732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,13 +40,20 @@ ActiveRecord::Schema.define(version: 2021_01_24_195354) do
     t.index ["activity_id"], name: "index_activity_variations_on_activity_id"
   end
 
-  create_table "machines", force: :cascade do |t|
-    t.string "name"
-    t.string "notes"
+  create_table "machine_activities", force: :cascade do |t|
+    t.bigint "machine_id", null: false
     t.bigint "activity_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["activity_id"], name: "index_machines_on_activity_id"
+    t.index ["activity_id"], name: "index_machine_activities_on_activity_id"
+    t.index ["machine_id"], name: "index_machine_activities_on_machine_id"
+  end
+
+  create_table "machines", force: :cascade do |t|
+    t.string "name"
+    t.string "notes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -57,5 +64,6 @@ ActiveRecord::Schema.define(version: 2021_01_24_195354) do
   end
 
   add_foreign_key "activity_variations", "activities"
-  add_foreign_key "machines", "activities"
+  add_foreign_key "machine_activities", "activities"
+  add_foreign_key "machine_activities", "machines"
 end

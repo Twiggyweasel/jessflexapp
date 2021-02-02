@@ -1,7 +1,8 @@
 # defines the defaults for an activity record to be used in variates and workouts
 class Activity < ApplicationRecord
   # relationships
-  has_one :machine, dependent: :nullify
+  has_one :machine_activity, dependent: :destroy
+  has_one :machine, through: :machine_activity
   has_many :activity_variations, dependent: :destroy
 
   enum location: { gym: 0, anywhere: 1 }
