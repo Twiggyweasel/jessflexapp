@@ -1,6 +1,6 @@
 class Plan < ApplicationRecord
   # constants
-  STATUSES = %i[hidden available retired].freeze
+  STATUSES = %i[hidden available soldout retired].freeze
   DIFFICULTIES = %i[beginner intermediate advanced].freeze
 
   # enums

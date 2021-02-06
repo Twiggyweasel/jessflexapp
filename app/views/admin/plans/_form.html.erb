@@ -1,0 +1,21 @@
+<%= form_for [:admin, @plan] do |f| %>
+  <%- if @plan.errors.any? %>
+    <%= render partial: 'shared/form_errors', locals: { errors: @plan.errors.full_messages } %>
+  <% end %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  </br>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  </br>
+  <%= f.label :price %>
+  <%= f.number_field :price %>
+  </br>
+  <%= f.label :difficulty %>
+  <%= f.select :difficulty, Plan.difficulties.keys.map { |key| [key.humanize, key] } %>
+  </br>
+  <%= f.label :status %>
+  <%= f.select :status, Plan.statuses.keys.map { |key| [key.humanize, key]} %>
+  </br>
+  <%= f.submit %>
+<% end %>
