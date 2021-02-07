@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Creating a plan", type: :feature do
   it "valid inputs" do
-    visit new_plan_path
+    visit new_admin_plan_path
     expect(page).to have_text("Plan")
     fill_in "Title", with: "Fake Plan"
     fill_in "Description", with: "This is a fake decription"
@@ -15,7 +15,7 @@ RSpec.describe "Creating a plan", type: :feature do
   end
 
   it "invalid inputs" do
-    visit new_plan_path
+    visit new_admin_plan_path
     fill_in "Title", with: ""
     click_on "Create Plan"
     expect(page).to have_content("Title can't be blank")

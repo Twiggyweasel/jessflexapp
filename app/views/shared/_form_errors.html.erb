@@ -1,5 +1,6 @@
-<div>
-  The following errors prevented your record from saving
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">Opps! Somethings wrong</h4>
+  <p>The following errors prevented your record from saving</p>
   <ul>
     <%- errors.each do |error| %>
     <li><%= error %></li>
