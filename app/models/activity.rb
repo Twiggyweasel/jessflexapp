@@ -3,7 +3,7 @@ class Activity < ApplicationRecord
   # relationships
   has_one :machine_activity, dependent: :destroy
   has_one :machine, through: :machine_activity
-  has_many :activity_variations, dependent: :destroy
+  has_many :variations, dependent: :destroy
 
   enum location: { gym: 0, anywhere: 1 }
   enum category: { upper_body: 0, lower_body: 1, abs: 2, HIIT: 3 }

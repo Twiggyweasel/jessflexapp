@@ -29,17 +29,6 @@ ActiveRecord::Schema.define(version: 2021_02_05_031657) do
     t.index ["name"], name: "index_activities_on_name", unique: true
   end
 
-  create_table "activity_variations", force: :cascade do |t|
-    t.integer "difficulty"
-    t.integer "weight"
-    t.integer "set"
-    t.integer "rep"
-    t.bigint "activity_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["activity_id"], name: "index_activity_variations_on_activity_id"
-  end
-
   create_table "machine_activities", force: :cascade do |t|
     t.bigint "machine_id", null: false
     t.bigint "activity_id", null: false
@@ -94,12 +83,23 @@ ActiveRecord::Schema.define(version: 2021_02_05_031657) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "workout_activities", force: :cascade do |t|
-    t.bigint "workout_id", null: false
-    t.bigint "activity_variation_id", null: false
+  create_table "variations", force: :cascade do |t|
+    t.integer "difficulty"
+    t.integer "weight"
+    t.integer "set"
+    t.integer "rep"
+    t.bigint "activity_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["activity_variation_id"], name: "index_workout_activities_on_activity_variation_id"
+    t.index ["activity_id"], name: "index_variations_on_activity_id"
+  end
+
+  create_table "workout_activities", force: :cascade do |t|
+    t.bigint "workout_id", null: false
+    t.bigint "variation_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["variation_id"], name: "index_workout_activities_on_variation_id"
     t.index ["workout_id"], name: "index_workout_activities_on_workout_id"
   end
 
@@ -110,13 +110,13 @@ ActiveRecord::Schema.define(version: 2021_02_05_031657) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "activity_variations", "activities"
   add_foreign_key "machine_activities", "activities"
   add_foreign_key "machine_activities", "machines"
   add_foreign_key "plan_users", "plans"
   add_foreign_key "plan_users", "users"
   add_foreign_key "plan_workouts", "plans"
   add_foreign_key "plan_workouts", "workouts"
-  add_foreign_key "workout_activities", "activity_variations"
+  add_foreign_key "variations", "activities"
+  add_foreign_key "workout_activities", "variations"
   add_foreign_key "workout_activities", "workouts"
 end

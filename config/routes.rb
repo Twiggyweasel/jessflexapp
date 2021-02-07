@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   namespace :admin do
-    resources :activities
+    resources :activities do 
+      resources :variations, except: :index
+    end
     resources :plans
   end
-  resources :activity_variations
   resources :machines
   resources :users
   resources :plans, only: %i[index show]

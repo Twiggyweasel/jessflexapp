@@ -40,7 +40,7 @@
 
 <h2>Variations</h2>
 
-<%= link_to 'add variation', new_activity_variation_path() %>
+<%= link_to 'add variation', new_admin_activity_variation_path(@activity) %>
 <table>
   <thead>
     <%- if @activity.has_weight %><th>Weight</th><% end %>
@@ -49,12 +49,14 @@
     <th>Difficulty</th>
   </thead>
   <tbody>
-    <% @activity.activity_variations.each do |activity_variation| %>
+    <% @activity.variations.each do |variation| %>
       <tr>
-        <%- if @activity.has_weight == true %><td><%= activity_variation.weight %></td><% end %>
-        <td><%= activity_variation.set %></td>
-        <td><%= activity_variation.rep %></td>
-        <td><%= activity_variation.difficulty.titleize%></td>
+        <%- if @activity.has_weight == true %><td><%= variation.weight %></td><% end %>
+        <td><%= variation.set %></td>
+        <td><%= variation.rep %></td>
+        <td><%= variation.difficulty.titleize%></td>
+        <td><%= link_to "Edit", edit_admin_activity_variation_path(@activity, variation) %></td>
+        <td><%= link_to "Delete", [:admin, @activity, variation], method: :delete, data: { confirm: "Are you sure?" } %>
       </tr>
     <% end %>
   </tbody>

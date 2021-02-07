@@ -1,0 +1,21 @@
+
+<%= form_with(model: [:admin, activity, variation]) do |f| %>
+<%- if @variation.errors.any? %>
+  <%= render partial: 'shared/form_errors', locals: { errors: @variation.errors.full_messages} %>
+<% end %>
+<%= f.label :set %>
+<%= f.number_field :set %>
+</br>
+<%= f.label :rep %>
+<%= f.number_field :rep %>
+</br>
+<%- if activity.has_weight %>
+  <%= f.label :weight %>
+  <%= f.number_field :weight %>
+<%end %>
+</br>
+<%= f.label :difficulty %>
+<%= f.select :difficulty, Variation.difficulties.keys.map { |key| [key.titleize, key]} %>
+</br>
+<%= f.submit %>
+<% end %>

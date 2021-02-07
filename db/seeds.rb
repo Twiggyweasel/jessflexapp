@@ -8,7 +8,7 @@
 
 Activity.create(name: "Chest Press", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 0, category: 0, set_label: 0, has_weight: true, machine_based: false)
 
-Activity.create(name: "Rowing", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 0, category: 0, set_label: 0, has_weight: true, machine_based: false)
+Activity.create(name: "Rowing", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 0, category: 0, set_label: 0, has_weight: false, machine_based: false)
 
 Activity.create(name: "Super Rowing", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 0, category: 0, set_label: 0, has_weight: true, machine_based: false)
 
@@ -20,7 +20,7 @@ MachineActivity.create(activity: Activity.last, machine: Machine.first)
 count = 0
 weights = [10, 20, 30]
 3.times do 
-  ActivityVariation.create(weight: weights[count], set: 3, rep: 10, difficulty: ActivityVariation.difficulties.keys[count], activity: Activity.first)
+  Variation.create(weight: weights[count], set: 3, rep: 10, difficulty: Variation.difficulties.keys[count], activity: Activity.first)
   count += 1
 end  
 

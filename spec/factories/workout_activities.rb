@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :workout_activity do
     workout { nil }
-    activity_variation { nil }
+    variation { nil }
   end
 end

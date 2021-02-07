@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :activity_variation do
+  factory :variation do
     difficulty { 1 }
     weight { 1 }
     set { 1 }

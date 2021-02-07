@@ -2,6 +2,6 @@
 <%- @plans.each do |plan| %>
   <%= plan.title %>
   <%= link_to "Edit", edit_admin_plan_path(plan) %>
-  <%= link_to 'Destroy', admin_plan_path(plan), method: :delete, data: { confirm: "Are you sure?"} %>
+  <%= link_to 'Destroy', admin_plan_path(plan), method: :delete, data: { confirm: "Are you sure?" } %>
   </br>
 <% end %>

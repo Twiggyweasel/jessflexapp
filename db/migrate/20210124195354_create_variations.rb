@@ -1,6 +1,6 @@
-class CreateActivityVariations < ActiveRecord::Migration[6.1]
+class CreateVariations < ActiveRecord::Migration[6.1]
   def change
-    create_table :activity_variations do |t|
+    create_table :variations do |t|
       t.integer :difficulty
       t.integer :weight
       t.integer :set
