@@ -14,8 +14,8 @@ class Plan < ApplicationRecord
   has_many :users, through: :plan_users
 
   # validations
-  validates :title, presence: true, length: { in: 6..30 }
-  validates :description, length: { in: 6..150 }
+  validates :title, presence: true, length: { in: 6..60 }
+  validates :description, length: { in: 6..400 }
   validates :price, presence: true, numericality: { greater_than_equal_to: 0, less_than_equal_to: 10_000 }
   validates :status, presence: true, inclusion: { in: statuses.keys }
   validates :difficulty, presence: true, inclusion: { in: difficulties.keys }
