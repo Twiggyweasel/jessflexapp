@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :activity do
-    name { Faker::Lorem.characters(number: 10) }
+    name { Faker::Lorem.characters(number: 10, min_alpha: 10) }
     simple_desc { Faker::Lorem.paragraph(sentence_count: 2) }
     detail_desc { Faker::Lorem.paragraph(sentence_count: 9) }
     location { Activity.locations.keys[0] }

@@ -4,6 +4,9 @@ class CreateWorkouts < ActiveRecord::Migration[6.1]
       t.string :title
       t.string :description
 
+     
+      t.boolean :bundle_only, default: true 
+      t.integer :status
       t.timestamps
     end
   end

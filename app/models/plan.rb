@@ -20,11 +20,6 @@ class Plan < ApplicationRecord
   validates :status, presence: true, inclusion: { in: statuses.keys }
   validates :difficulty, presence: true, inclusion: { in: difficulties.keys }
 
-  # scopes
-  scope :hidden, -> { where(status: :hidden) }
-  scope :available, -> { where(status: :available) }
-  scope :retired, -> { where(status: :retired) }
-
   # methods
   def has_previewable_workouts?
     plan_workouts.where(previewable: true).count >= 1

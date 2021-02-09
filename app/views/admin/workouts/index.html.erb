@@ -1,0 +1,27 @@
+<h1>All Workouts</h1>
+<%= link_to "create workout", new_admin_workout_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Bundle Only<th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%- @workouts.each do |plan| %>
+      <tr>
+        <td><%= plan.title %></td>
+        <td><%= plan.description %></td>
+        <td>
+          <%= link_to "Edit", edit_admin_plan_path(plan) %>
+          <%= link_to "Delete", admin_plan_path(plan), methed: :delete, data: { confirm: "Are you sure?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
