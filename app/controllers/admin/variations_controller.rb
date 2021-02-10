@@ -1,8 +1,9 @@
 module Admin
   class VariationsController < ApplicationController
+    layout "admin"
     before_action :set_activity, only: %i[new create edit update destroy]
     before_action :set_variation, only: %i[show edit update destroy]
-    
+
     def show; end
 
     def new

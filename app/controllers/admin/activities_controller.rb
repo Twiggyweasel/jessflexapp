@@ -1,5 +1,6 @@
 module Admin
   class ActivitiesController < ApplicationController
+    layout "admin"
     before_action :set_activity, only: %i[show edit update destroy]
 
     # GET /activities

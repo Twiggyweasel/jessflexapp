@@ -1,6 +1,8 @@
 module Admin
   class PlansController < ApplicationController
+    layout "admin"
     before_action :set_plan, only: %i[show edit update destroy]
+
     def index
       @plans = Plan.all
     end

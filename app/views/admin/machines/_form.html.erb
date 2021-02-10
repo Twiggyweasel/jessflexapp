@@ -1,0 +1,15 @@
+<%= form_with(model: [:admin, machine]) do |f| %>
+  <%- if machine.errors.any? %>
+    <%= render partial: "shared/form_errors", locals: { errors: machine.errors.full_messages } %>
+  <% end %>
+  <div class="mb-3">
+    <%= f.label :name, class: "form-label" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :notes, class: "form-label" %>
+    <%= f.text_area :notes, class: "form-control", rows: 3 %>
+  </div>
+  <%= f.submit class: "btn btn-success" %>
+  <%= link_to "Cancel", machine.new_record? ? admin_machines_path : admin_machine_path(machine), class: "btn btn-secondary" %>
+<% end %>

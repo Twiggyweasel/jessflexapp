@@ -1,0 +1,21 @@
+<h1>All Machines</h1>
+<%= link_to "Create Machine", new_admin_machine_path %>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%- @machines.each do |machine| %>
+      <tr>
+        <td><%= machine.name %></td>
+        <td>
+          <%= link_to "Edit", edit_admin_machine_path(machine) %>
+          <%= link_to "Delete", admin_machine_path(machine), method: :delete, data: { confirm: "Are you sure?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

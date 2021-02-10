@@ -8,7 +8,7 @@ FactoryBot.define do
     set_label { Activity.set_labels.keys[0] }
     has_weight { false }
     machine_based { false }
-    
+
     factory :weighted_activity do
       has_weight { true }
     end

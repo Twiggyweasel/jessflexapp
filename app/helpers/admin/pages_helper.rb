@@ -1,4 +1,4 @@
 module Admin
-  module PlansHelper
+  module PagesHelper
   end
 end

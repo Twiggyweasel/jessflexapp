@@ -1,0 +1,7 @@
+<h1><%= @machine.name %></h1>
+<h2>Notes:</h2>
+<%- if @machine.notes.present? %>
+  <p><%= @machine.notes %>
+<% else %>
+  No notes provided
+<% end %>

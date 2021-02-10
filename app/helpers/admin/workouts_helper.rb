@@ -1,2 +1,4 @@
-module Admin::WorkoutsHelper
+module Admin
+  module WorkoutsHelper
+  end
 end
