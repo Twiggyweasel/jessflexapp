@@ -17,6 +17,7 @@
           <%= render partial: "shared/admin_panel" %>
         </div>
         <div class="col">
+          <%= render partial: "shared/messages" if flash.any? %>
           <%= yield %>
         </div>
       </div>
