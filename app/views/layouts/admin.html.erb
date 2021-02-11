@@ -9,11 +9,11 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body style="margin-top: 56px; min-height: 100vh;">
     <%= render partial: "shared/header", locals: { admin: true } %>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col bg-light text-center border-end" style="background-color: red; min-width: 200px; max-width: 200px; height: 100vh;">
+    <div class="container-fluid" style="min-height: 100vh">
+      <div class="row" style="min-height: 100vh;">
+        <div class="col bg-light text-center border-end" style="background-color: red; min-width: 200px; max-width: 200px; min-height: 100%;">
           <%= render partial: "shared/admin_panel" %>
         </div>
         <div class="col">
