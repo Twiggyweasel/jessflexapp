@@ -12,23 +12,34 @@ module Admin
 
     def create
       @variation = @activity.variations.build(variation_params)
-
-      if @variation.save
-        flash[:success] = "Variation successfully created"
-        redirect_to admin_activity_path(@activity)
-      else
-        render :new
+      respond_to do |format|
+        if @variation.save
+          format.turbo_stream {
+            render turbo_stream: turbo_stream.prepend("variations", @variation)
+          }
+          format.html { redirect_to admin_activity_path(@activity), success: "Variation successfully created" }
+          format.json { render :show, status: :created, location: @activity }
+        else
+          format.turbo_stream {
+            render turbo_stream: turbo_stream.replace("variation-form", partial: "admin/variations/form", locals: { activity: @activity, variation: @variation })
+          }
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @variation.errors, status: :unprocessable_entity }
+        end
       end
     end
 
     def edit; end
 
     def update
-      if @variation.update(variation_params)
-        flash[:success] = "Variation successfully updated"
-        redirect_to admin_activity_path(@activity)
-      else
-        render :edit
+      respond_to do |format|
+        if @variation.update(variation_params)
+          format.html { redirect_to admin_activity_path(@activity), success: "Variation successfully updated" }
+          format.json { render :show, status: :ok, location: @activity }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @variation.errors, status: :unprocessable_entity }
+        end
       end
     end
 

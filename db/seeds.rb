@@ -17,10 +17,9 @@ Machine.create(name: "Rowing Machine")
 MachineActivity.create(activity: Activity.find(2), machine: Machine.first)
 MachineActivity.create(activity: Activity.last, machine: Machine.first)
 
-count = 0
+
 weights = [10, 20, 30]
 3.times do 
-  Variation.create(weight: weights[count], set: 3, rep: 10, difficulty: Variation.difficulties.keys[count], activity: Activity.first)
-  count += 1
+  Variation.create(weight: weights[rand(0..2)], set: rand(1..10), rep: rand(3..10), difficulty: Variation.difficulties.keys[rand(0..2)], activity: Activity.first)
 end  
 

@@ -1,0 +1,22 @@
+<%= form_for @plan do |f| %>
+  <%= @plan.errors.full_messages %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+
+  <%= f.label :price %>
+  <%= f.number_field :price %>
+
+  <%= f.label :difficulty %>
+  <%= f.select :difficulty, Plan.difficulties.keys.map { |key| [key.humanize, key] } %>
+
+  <%= f.label :status %>
+  <%= f.select :status, Plan.statuses.keys.map { |key| [key.humanize, key]} %>
+    
+  <!-- form_for @object, html: { multipart: true }, do |f| -->
+  <!-- form_for @object, html: { class: "classname" }, do |f| -->
+  <%= f.submit %>
+  
+<% end %>

@@ -1,21 +1,46 @@
 
-<%= form_with(model: [:admin, activity, variation]) do |f| %>
+<%= form_with(model: [:admin, activity, variation], data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset"}, id: "variation-form") do |f| %>
 <%- if @variation.errors.any? %>
   <%= render partial: 'shared/form_errors', locals: { errors: @variation.errors.full_messages} %>
 <% end %>
-<%= f.label :set %>
-<%= f.number_field :set %>
-</br>
-<%= f.label :rep %>
-<%= f.number_field :rep %>
-</br>
+<div class="row mb-2" data-controller="slider">
+  <%= f.label :set, class: "form-label" %>
+  <div class="col">
+    <input type="range" class="form-range" min="1" max="10" value="1" id="customRange2" data-slider-target="number" data-action="change->slider#label">
+  </div>
+  <div class="col-2">
+    <%= f.number_field :set, class: 'form-control', value: 1, "data-slider-target": "label" %>
+  </div>
+</div>
+<div class="row mb-2" data-controller="slider">
+  <%= f.label :rep, class: "form-label" %>
+  <div class="col">
+    <input type="range" class="form-range" min="5" max="50" step="5" value="5" id="repRange" data-slider-target="number" data-action="change->slider#label">
+  </div>
+  <div class="col-2">
+    <%= f.number_field :rep, class: "form-control", value: 5, "data-slider-target": "label" %>
+  </div>
+</div>
 <%- if activity.has_weight %>
-  <%= f.label :weight %>
-  <%= f.number_field :weight %>
-<%end %>
-</br>
-<%= f.label :difficulty %>
-<%= f.select :difficulty, Variation.difficulties.keys.map { |key| [key.titleize, key]} %>
-</br>
-<%= f.submit %>
+  <div class="row mb-2" data-controller="slider">
+    <%= f.label :weight, class: "form-label" %>
+    <div class="col">
+      <input type="range" class="form-range" min="5" max="250" step="5" value="5" id="repRange" data-slider-target="number" data-action="change->slider#label">
+    </div>
+    <div class="col-2">
+      <%= f.number_field :weight, class: "form-control", value: 5,"data-slider-target": "label" %>
+    </div>
+  </div>
 <% end %>
+<div class="row mb-2">
+  <div class="col">
+    <%= f.label :difficulty, class: "form-label" %>
+    <%= f.select :difficulty, Variation.difficulties.keys.map { |key| [key.titleize, key]}, { }, class: "form-select" %>
+  </div>
+</div>
+<div class="row my-3">
+  <%= f.submit class: "btn btn-success", "data-reset-form-target": "button" %>
+</div>
+<% end %>
+
+

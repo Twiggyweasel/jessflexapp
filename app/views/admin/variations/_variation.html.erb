@@ -1,0 +1,8 @@
+<tr>
+  <%- if variation.activity.has_weight == true %><td><%= variation.weight %></td><% end %>
+  <td><%= variation.set %></td>
+  <td><%= variation.rep %></td>
+  <td><%= variation.difficulty.titleize%></td>
+  <td><%= link_to "Edit", edit_admin_activity_variation_path(variation.activity, variation) %></td>
+  <td><%= link_to "Delete", [:admin, variation.activity, variation], method: :delete, data: { confirm: "Are you sure?" } %>
+</tr>

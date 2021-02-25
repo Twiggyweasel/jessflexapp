@@ -1,63 +1,58 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <ul class="list-group list-group-horizontal my-3">
+      <div class="list-group-item"><%= link_to 'Edit', edit_admin_activity_path(@activity), class: "link-secondary" %></div>
+      <div class="list-group-item"><%= link_to 'Back', admin_activities_path, class: "link-secondary" %></div>
+    </ul>
+  </div>
+  <div class="row">
+    <h1>Activity: <%= @activity.name %></h1>
+    <section>
+      <p><strong>Simple Description</strong><br><%= @activity.simple_desc%></p>
+      <p><strong>Detail Description</strong><br><%= @activity.detail_desc %></p>
+    </section>
+    <section>
+        <strong>Location:</strong>
+        <%= @activity.location %>
+
+        <strong>Category:</strong>
+        <%= @activity.category %>
+
+        <strong>Set label:</strong>
+        <%= @activity.set_label %>
+
+        <strong>Has weight:</strong>
+        <%= @activity.has_weight %>
+
+        <strong>Machine based:</strong>
+        <%= @activity.machine_based %>
+    </section>
+  </div>
+  <div class="row">
+    <h2>Variations</h2>
+    <div class="col">
+        <table class="table">
+          <thead>
+            <%- if @activity.has_weight %><th>Weight</th><% end %>
+            <th>Set</th>
+            <th>Reps</th>
+            <th>Difficulty</th>
+            <th colspan='2'>actions</th>
+          </thead>
+          <tbody id="variations">
+            <%= render @activity.variations %>
+          </tbody>
+        </table>  
+    </div>
+    <div class="col">
+      <%= turbo_frame_tag "new_variation", src: new_admin_activity_variation_path(@activity), target: "_top" %>
+    </div>
+    <%= link_to 'add variation', new_admin_activity_variation_path(@activity) %>
 
 
-<%= link_to 'Edit', edit_admin_activity_path(@activity) %> |
-<%= link_to 'Back', admin_activities_path %>
 
-<h1>Activity: <%= @activity.name %></h1>
-<section>
-  <p><strong>Simple Description</strong><br><%= @activity.simple_desc%></p>
+  </div>
+</div>
 
-  <p><strong>Detail Description</strong><br><%= @activity.detail_desc %></p>
-</section>
 
-<section>
-  <p>
-    <strong>Location:</strong>
-    <%= @activity.location %>
-  </p>
 
-  <p>
-    <strong>Category:</strong>
-    <%= @activity.category %>
-  </p>
-
-  <p>
-    <strong>Set label:</strong>
-    <%= @activity.set_label %>
-  </p>
-
-  <p>
-    <strong>Has weight:</strong>
-    <%= @activity.has_weight %>
-  </p>
-
-  <p>
-    <strong>Machine based:</strong>
-    <%= @activity.machine_based %>
-  </p>
-</section>
-
-<h2>Variations</h2>
-
-<%= link_to 'add variation', new_admin_activity_variation_path(@activity) %>
-<table>
-  <thead>
-    <%- if @activity.has_weight %><th>Weight</th><% end %>
-    <th>Set</th>
-    <th>Reps</th>
-    <th>Difficulty</th>
-  </thead>
-  <tbody>
-    <% @activity.variations.each do |variation| %>
-      <tr>
-        <%- if @activity.has_weight == true %><td><%= variation.weight %></td><% end %>
-        <td><%= variation.set %></td>
-        <td><%= variation.rep %></td>
-        <td><%= variation.difficulty.titleize%></td>
-        <td><%= link_to "Edit", edit_admin_activity_variation_path(@activity, variation) %></td>
-        <td><%= link_to "Delete", [:admin, @activity, variation], method: :delete, data: { confirm: "Are you sure?" } %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>

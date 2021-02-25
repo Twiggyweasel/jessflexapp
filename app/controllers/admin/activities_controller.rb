@@ -31,7 +31,7 @@ module Admin
           format.html { redirect_to [:admin, @activity], success: "Activity was successfully created." }
           format.json { render :show, status: :created, location: @activity }
         else
-          format.html { render :new }
+          format.html { render :new, status: :unprocessable_entity }
           format.json { render json: @activity.errors, status: :unprocessable_entity }
         end
       end
