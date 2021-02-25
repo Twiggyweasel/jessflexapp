@@ -38,15 +38,16 @@
           <tbody id="variations">
             <%= render @activity.variations %>
           </tbody>
-        </table>  
+        </table>
+        <% if !@activity.variations.any? %>  
+          <div class="alert alert-info" role="alert">
+            No Variations found!
+          </div>
+        <% end %>
     </div>
     <div class="col">
       <%= turbo_frame_tag "new_variation", src: new_admin_activity_variation_path(@activity), target: "_top" %>
     </div>
-    <%= link_to 'add variation', new_admin_activity_variation_path(@activity) %>
-
-
-
   </div>
 </div>
 
