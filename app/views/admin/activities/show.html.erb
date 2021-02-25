@@ -7,29 +7,25 @@
   </div>
   <div class="row">
     <h1>Activity: <%= @activity.name %></h1>
-    <section>
-      <p><strong>Simple Description</strong><br><%= @activity.simple_desc%></p>
-      <p><strong>Detail Description</strong><br><%= @activity.detail_desc %></p>
-    </section>
-    <section>
-        <strong>Location:</strong>
-        <%= @activity.location %>
-
-        <strong>Category:</strong>
-        <%= @activity.category %>
-
-        <strong>Set label:</strong>
-        <%= @activity.set_label %>
-
-        <strong>Has weight:</strong>
-        <%= @activity.has_weight %>
-
-        <strong>Machine based:</strong>
-        <%= @activity.machine_based %>
-    </section>
+    <div class="row">
+      <div class="col">
+        <h3>Detail Description</h3>
+        <p><%= @activity.detail_desc %></p>
+      </div>
+      <div class="col">
+        <h3>Attributes</h3>
+        <ul class="list-group">
+          <li class="list-group-item">Location: <%= @activity.location %></li>
+          <li class="list-group-item">Category: <%= @activity.category %></li>
+          <li class="list-group-item">Set Label: <%= @activity.set_label %></li>
+          <li class="list-group-item">Has Weight: <%= @activity.has_weight %></li>
+          <li class="list-group-item">Machine based: <%= @activity.machine_based %></li>
+        </ul>
+      </div>
+    </div>
   </div>
   <div class="row">
-    <h2>Variations</h2>
+    <h3>Variations</h3>
     <div class="col">
         <table class="table">
           <thead>

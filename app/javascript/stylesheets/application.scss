@@ -1,1 +1,6 @@
-@import "bootstrap"
+@import "bootstrap";
+@import "./actiontext.scss";
+
+.form-border {
+  border-radius: 1.5rem;
+}

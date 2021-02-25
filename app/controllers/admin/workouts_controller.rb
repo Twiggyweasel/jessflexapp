@@ -16,22 +16,28 @@ module Admin
     def create
       @workout = Workout.new(workout_params)
 
-      if @workout.save
-        flash[:success] = "Workout successfully created"
-        redirect_to admin_workout_path(@workout)
-      else
-        render :new
+      respond_to do |format|
+        if @workout.save
+          format.html { redirect_to admin_workout_path(@workout), success:  "Workout successfully created" }
+          format.json { render :show, status: :created, location: @workout }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @workout.errors, status: :unprocessable_entity }
+        end
       end
     end
 
     def edit; end
 
     def update
-      if @workout.update(workout_params)
-        flash[:success] = "Workout successfully updated"
-        redirect_to admin_workout_path(@workout)
-      else
-        render :edit
+      respond_to do |format|
+        if @workout.update(workout_params)
+          format.html { redirect_to admin_workout_path(@workout), success: "Workout successfully updated" }
+          format.json { render :show, status: :ok, location: @workout }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @workout.errors, status: :unprocessable_entity }
+        end
       end
     end
 

@@ -1,5 +1,6 @@
 class Workout < ApplicationRecord
   WORKOUT_STATUSES = %i[active inactive].freeze
+  has_rich_text :description 
 
   has_many :workout_activities, dependent: :destroy
   has_many :activity_variations, through: :workout_activities
