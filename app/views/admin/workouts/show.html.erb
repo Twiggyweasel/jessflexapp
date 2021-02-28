@@ -1,4 +1,58 @@
-<h1><%= @workout.title %></h1>
-<%= @workout.description %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1><%= @workout.title %></h1>
+    </div>
+  </div>
+  <div class="row">
 
-<div class="test"></div>
+    <div class="col">
+      <i class="fal fa-stopwatch mx-1"></i><span class="ps-1 pe-2"><%= @workout.time_clean %></span>
+      |
+      <i class="fal fa-mountain mx-1"></i><span class="ps-1 pe-2"><%= @workout.difficulty.titleize %></span>
+      |
+      <i class="fal fa-usd-circle mx-1"></i><span class="ps-1 pe-2"><%= @workout.price_clean %></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h4>Description</h4>
+      <%= @workout.description %>
+    </div>
+  </div>
+  <div class="row my-2">
+    <div class="col-6">
+      <h4>Activites</h4>
+      <hr>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Sets</th>
+            <th>Reps</th>
+            <th>Weight</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="workout-activities">
+          <%
+=begin%>
+ <% @workout.variations.each do |variation| %>
+          <tr>
+            <td><%= variation.activity.name %></td>
+            <td><%= variation.set %></td>
+            <td><%= variation.rep %></td>
+            <td><%= variation.weight %></td>
+            <td></td>
+          </tr>
+          <% end %> 
+<%
+=end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+

@@ -18,3 +18,4 @@ ActiveStorage.start()
 
 require("trix")
 require("@rails/actiontext")
+require("../fontawesome/all.min.js")

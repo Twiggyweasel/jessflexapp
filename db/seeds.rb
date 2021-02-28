@@ -6,20 +6,62 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Activity.create(name: "Chest Press", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 0, category: 0, set_label: 0, has_weight: true, machine_based: false)
+# activities
+Activity.create(name: "Side to Side Crawls", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 0, set_label: 0, has_weight: false, machine_based: false)
+Activity.create(name: "Squat & Curtsey", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 0, set_label: 0, has_weight: false, machine_based: false)
+Activity.create(name: "Fire Hydrants", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 0, set_label: 0, has_weight: false, machine_based: false)
+Activity.create(name: "Reverse Lunges", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 0, set_label: 0, has_weight: false, machine_based: false)
+Activity.create(name: "Burpees", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 1, set_label: 0, has_weight: false, machine_based: false)
 
-Activity.create(name: "Rowing", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 0, category: 0, set_label: 0, has_weight: false, machine_based: false)
+Activity.create(name: "Step Ups", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 1, set_label: 0, has_weight: false, machine_based: false)
 
-Activity.create(name: "Super Rowing", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 0, category: 0, set_label: 0, has_weight: true, machine_based: false)
+Activity.create(name: "Squat & Raise Leg", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 1, set_label: 0, has_weight: false, machine_based: false)
 
+Activity.create(name: "Pulse Squats", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 1, set_label: 0, has_weight: false, machine_based: false)
+
+Activity.create(name: "Side Lunge", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 1, set_label: 0, has_weight: false, machine_based: false)
+
+# machines 
 Machine.create(name: "Rowing Machine")
 
-MachineActivity.create(activity: Activity.find(2), machine: Machine.first)
-MachineActivity.create(activity: Activity.last, machine: Machine.first)
+# workouts
+Workout.create(title: "Workout 1", description: "this is a simple description", bundle_only: true, status: "active", price: 0, difficulty: Workout.difficulties.keys[0], time: 600)
+
+Workout.create(title: "Workout 2", description: "this is a simple description", bundle_only: true, status: "active", price: 0, difficulty: Workout.difficulties.keys[0], time: 600)
 
 
-weights = [10, 20, 30]
-3.times do 
-  Variation.create(weight: weights[rand(0..2)], set: rand(1..10), rep: rand(3..10), difficulty: Variation.difficulties.keys[rand(0..2)], activity: Activity.first)
+
+# variations
+
+sets = [4, 4, 4, 4, 3, 4, 4, 4, 4]
+reps = [12, 12, 12, 12, 10, 12, 12, 20, 12]
+activity = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+count = 0
+9.times do 
+  Series.create(set: sets[count], rep: reps[count], activity: Activity.find(activity[count]))
+  count += 1
 end  
 
+Activity.all.each do |activity|
+  Variation.create(description: "NA", activity: activity)
+end
+
+Activity.last.variations.create(description: "This is a test")
+
+# # workout_variations
+# count = 0
+# workout = Workout.first
+# Variation.all.each do |v|
+#   WorkoutActivity.create(workout: workout, variation: v)
+#   if count < 4
+#     count += 1
+#   else
+#     workout = Workout.find(2)
+#     count = 0
+#   end
+# end
+
+# Plan.create(title: "BOOTY-FULL GAINS", description: "This is a test description", price: 4999, status: Plan.statuses.keys[1], difficulty: Plan.difficulties.keys[1] )
+
+# PlanWorkout.create(plan: Plan.first, workout: Workout.first)
+# PlanWorkout.create(plan: Plan.first, workout: Workout.second)

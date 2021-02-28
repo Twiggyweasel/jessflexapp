@@ -1,2 +1,42 @@
-<h1><%= @plan.title %></h1>
-<p>Find me in app/views/plans/show.html.erb</p>
+<div class="containter">
+  <div class="row">
+    <div class="col">
+      <h1><%= @plan.title %></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= @plan.description %>
+    </div>
+  </div>
+  <div class="row justify-content-start gx-2">
+  <h2>Workouts</h2>
+    <%- @plan.plan_workouts.each do |plan_workout| %>
+      <div class="col-3">
+        <div class="card">
+          <div class="card-header">
+            <div class="row align-items-center justify-content-between">
+              <div class="col"><%= plan_workout.workout.title %></div>
+              <div class="col text-end">
+                <%= link_to "View", admin_workout_path(plan_workout.workout), class: "btn btn-primary btn-sm" %>
+                <%= link_to(admin_plan_workout_path(plan_workout), method: :delete, class: "btn btn-danger btn-sm") do %>
+                <i class="fad fa-trash"></i>
+                <% end %>
+              </div>
+            </div>      
+          </div>
+          <ul class="list-group list-group-flush">
+            <%- plan_workout.workout.variations.each do |variation| %>
+            <li class="list-group-item">
+              <%= variation.activity.name %>
+              <br>
+              <%= variation.set %> sets of <%= variation.rep %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>  
+  </div>
+</div>
+

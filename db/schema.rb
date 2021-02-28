@@ -67,17 +67,6 @@ ActiveRecord::Schema.define(version: 2021_02_05_031657) do
     t.index ["name"], name: "index_activities_on_name", unique: true
   end
 
-  create_table "activity_variations", force: :cascade do |t|
-    t.integer "difficulty"
-    t.integer "weight"
-    t.integer "set"
-    t.integer "rep"
-    t.bigint "activity_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["activity_id"], name: "index_activity_variations_on_activity_id"
-  end
-
   create_table "machine_activities", force: :cascade do |t|
     t.bigint "machine_id", null: false
     t.bigint "activity_id", null: false
@@ -125,6 +114,15 @@ ActiveRecord::Schema.define(version: 2021_02_05_031657) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "series", force: :cascade do |t|
+    t.integer "set", null: false
+    t.integer "rep", null: false
+    t.bigint "activity_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["activity_id"], name: "index_series_on_activity_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -133,10 +131,8 @@ ActiveRecord::Schema.define(version: 2021_02_05_031657) do
   end
 
   create_table "variations", force: :cascade do |t|
-    t.integer "difficulty"
+    t.text "description"
     t.integer "weight"
-    t.integer "set"
-    t.integer "rep"
     t.bigint "activity_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -144,10 +140,15 @@ ActiveRecord::Schema.define(version: 2021_02_05_031657) do
   end
 
   create_table "workout_activities", force: :cascade do |t|
+    t.integer "difficulty"
     t.bigint "workout_id", null: false
+    t.bigint "activity_id", null: false
     t.bigint "variation_id", null: false
+    t.bigint "series_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["activity_id"], name: "index_workout_activities_on_activity_id"
+    t.index ["series_id"], name: "index_workout_activities_on_series_id"
     t.index ["variation_id"], name: "index_workout_activities_on_variation_id"
     t.index ["workout_id"], name: "index_workout_activities_on_workout_id"
   end
@@ -156,21 +157,26 @@ ActiveRecord::Schema.define(version: 2021_02_05_031657) do
     t.string "title"
     t.string "description"
     t.boolean "bundle_only", default: true
-    t.integer "status"
+    t.integer "time", default: 10
+    t.integer "price", default: 0
+    t.integer "difficulty", default: 0
+    t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "activity_variations", "activities"
   add_foreign_key "machine_activities", "activities"
   add_foreign_key "machine_activities", "machines"
   add_foreign_key "plan_users", "plans"
   add_foreign_key "plan_users", "users"
   add_foreign_key "plan_workouts", "plans"
   add_foreign_key "plan_workouts", "workouts"
+  add_foreign_key "series", "activities"
   add_foreign_key "variations", "activities"
+  add_foreign_key "workout_activities", "activities"
+  add_foreign_key "workout_activities", "series"
   add_foreign_key "workout_activities", "variations"
   add_foreign_key "workout_activities", "workouts"
 end

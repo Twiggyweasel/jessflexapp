@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Add Workout</h1>
+    </div>
+  </div>
+    <div class="row">
+    <%= form_with(model: [:admin, @plan, @plan_workout]) do |f| %>
+
+      <div class="col mb-2">
+        <%= f.label :workout_id, "Workout" %>
+        <%= f.select(:workout_id, options_for_select(Workout.all.map { |w| [w.title.titleize, w.id]}), { prompt: "Select a workout" }, class: "form-select") %>
+      </div>
+      <%= f.submit class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>
