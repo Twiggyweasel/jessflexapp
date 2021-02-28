@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     end
     resources :workout_activities, only: %i[destroy]
     get '/dashboard', to: "pages#dashboard"
+    resources :series
   end
   
   resources :plans, only: %i[index show]

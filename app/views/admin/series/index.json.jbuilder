@@ -1,4 +1,7 @@
 json.array! @series do |series|
+  json.links do
+    json.self admin_series_url(series)
+  end
   json.data do
     json.type "series"
     json.id series.id
@@ -10,8 +13,14 @@ json.array! @series do |series|
     end
     json.relationships do
       json.activity do
-        json.id series.activity.id
-        json.name series.activity.name
+        json.links do
+          json.self admin_activity_url(series.activity)
+        end
+        json.data do
+          json.type "activity"
+          json.id series.activity.id
+          json.name series.activity.name
+        end
      end
     end
   end

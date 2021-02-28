@@ -1,4 +1,7 @@
 json.array! @variations do |variation|
+  json.links do
+    json.self "admin/variations/#{variation.id}"
+  end
   json.data do
     json.type "variation"
     json.id variation.id
@@ -10,9 +13,11 @@ json.array! @variations do |variation|
     end
     json.relationships do
       json.activity do
-        json.id variation.activity.id
-        json.name variation.activity.name
-     end
+        json.data do
+          json.id variation.activity.id
+          json.name variation.activity.name
+        end
+      end
     end
   end
 end
