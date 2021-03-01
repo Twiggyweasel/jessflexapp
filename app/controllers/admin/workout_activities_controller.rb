@@ -1,8 +1,16 @@
 module Admin
   class WorkoutActivitiesController < ApplicationController
     before_action :set_workout, only: %i[new create]
+
+    def show
+      @workout_activity = WorkoutActivity.find(params[:id])
+
+      render json: { html: render_to_string('show'), layout: false }
+    end
     def new
       @workout_activity = WorkoutActivity.new
+
+      render json: { html: render_to_string('new'), layout: false }
     end
 
     def create
@@ -30,7 +38,7 @@ module Admin
       end
 
       def workout_activity_params
-        params.require(:workout_activity).permit(:workout_id, :variation_id)
+        params.require(:workout_activity).permit(:workout_id, :activity_id, :series_id, :variation_id, :difficulty)
       end
   end
 end

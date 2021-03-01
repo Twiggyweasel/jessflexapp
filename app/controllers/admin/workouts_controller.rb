@@ -49,7 +49,7 @@ module Admin
     private
 
     def set_workout
-      @workout = Workout.find(params[:id])
+      @workout = Workout.includes(:activities).find(params[:id])
     end
 
     def workout_params

@@ -6,6 +6,9 @@
   </div>
   <div class="row" data-controller="activity-select">
     <div class="col">
+      <%- if @workout_activity.errors.any? %>
+        <%= render partial: "shared/form_errors", locals: { errors: @workout_activity.errors.full_messages } %>
+      <% end %>
       <%= form_with(model: [:admin, @workout, @workout_activity]) do |f| %>
         <%= f.label :activity_id, "Activity" %>
         <%= f.select(:activity_id, options_for_select(Activity.all.map { |a| [a.name, a.id] }), { prompt: "Select an Activity" } , { class: "form-select", data: { "activity-select-target": "activity", action: "change->activity-select#getSeries activity-select#getVariations activity-select#clearDropdowns"}}) %>
@@ -13,12 +16,6 @@
         <%= f.select(:series_id, "", { prompt: "You must select an Activity..." }, { class: "form-select", data: { "activity-select-target": "series" } }) %>
         <%= f.label :variation_id, "Activity Variation" %>
         <%= f.select(:variation_id, "", { prompt: "You must select an Activity..." }, { class: "form-select", data: { "activity-select-target": "variations" } }) %>
-<%
-=begin%>
-         
-        <%= f.select :variation_id, options_for_select(Variation.all.map { |v| ["#{ v.set} sets of #{v.rep} (#{v.difficulty.titleize})",v.id]}),{ prompt: "Select an Activity" }, class: "form-select" %> 
-<%
-=end%>
         <%= f.label :difficulty, class: "form-label" %>
         <% WorkoutActivity.difficulties.keys.each do |key| %>
           <div class="form-check form-check-inline">
@@ -27,7 +24,7 @@
           </div>
         <% end %>
 
-
+        <%= f.submit class: "btn btn-success" %>
       <% end %>
     </div>
   </div>
