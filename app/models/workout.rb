@@ -18,7 +18,7 @@ class Workout < ApplicationRecord
   validates :description, length: { in: 6..150 }
   validates :difficulty, presence: true, inclusion: { in: Workout.difficulties.keys }
   validates :status, presence: true, inclusion: { in: Workout.statuses.keys }
-  validates :duration, presence: true, numericality: { greater_than_or_equal_to: 60, less_than_or_equal_to: 3600 }
+  validates :duration, presence: true, numericality: { greater_than_or_equal_to: 5, less_than_or_equal_to: 3600 }
 
   # models
   def duration_label

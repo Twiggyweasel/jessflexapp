@@ -5,7 +5,9 @@ RSpec.describe "create new workout", type: :feature do
     it "will be successful" do
       visit new_admin_workout_path
       fill_in "Title",	with: "Test Title"
-      fill_in "Description", with: "This is the test description"
+      find('trix-editor').click.set("This is the test description")
+      fill_in "Duration", with: 60
+      # fill_in "Description", with: "This is the test description"
       click_on "Create Workout"
       visit admin_workouts_path
       expect(page).to have_content("Test Title")
