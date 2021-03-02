@@ -4,13 +4,13 @@ module Admin
 
     def show
       @workout_activity = WorkoutActivity.find(params[:id])
-
-      render json: { html: render_to_string('show'), layout: false }
+      render json: { html: render_to_string(partial: @workout_activity) }
+      # render json: { html: render_to_string('show'), layout: false }
     end
     def new
       @workout_activity = WorkoutActivity.new
 
-      render json: { html: render_to_string('new'), layout: false }
+      render json: { html: render_to_string(partial: 'form', locals: { workout: @workout, workout_activity: @workout_activity }), layout: false }
     end
 
     def create
@@ -27,7 +27,7 @@ module Admin
 
     def destroy
       @workout_activity = WorkoutActivity.find(params[:id])
-      @workout_activity.destory
+      @workout_activity.destroy
       redirect_to admin_workout_path(@workout_activity.workout)
     end
   

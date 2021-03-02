@@ -1,7 +1,31 @@
-<h1><%= @workout_activity.activity.name %></h1>
-<div class="ul">
-  <li>Sets: <%= @workout_activity.series.set %></li>
-  <li>Reps: <%= @workout_activity.series.rep %></li>
-  <li></li>
-  <li></li>
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-title">
+          <h5>Activity Details</h5>
+        </div>
+        <p class="leading">
+          Below are the details for the <%= @workout_activity.activity.name %>
+        </p>
+        <hr>
+        <div class="card-body">
+          <dl class="row">
+            <dt class="col-3">Name</dt>
+            <dd class="col-9"><%= @workout_activity.activity.name %></dd>
+            <dt class="col-3">Sets</dt>
+            <dd class="col-9"><%= @workout_activity.series.set %></dd>
+            <dt class="col-3">Reps</dt>
+            <dd class="col-9"><%= @workout_activity.series.rep %></dd>
+            <% if @workout_activity.activity.has_weight %>
+            <dt class="col-3">Weight</dt>
+            <dd class="col-9"><%= @workout_activity.variation.weight %> lbs</dd>
+            <% end %>
+            <dt class="col-3">Variation</dt>
+            <dd class="col"><%= @workout_activity.variation.description %></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

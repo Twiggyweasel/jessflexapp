@@ -1,0 +1,23 @@
+<div class="col-lg-6 col-md-12 my-3">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <div class="card-title">
+        <h5><%= workout.title %></h5>
+        <p class="leading"><%= workout.description %></p>
+        <hr>
+      </div>
+      <div class="card-text">
+        <div class="row mb-3">
+          <div class="col">
+            <i class="fal fa-stopwatch mx-1"></i><span class="ps-1 pe-2"><%= workout.time_clean %></span>
+            |
+            <i class="fal fa-mountain mx-1"></i><span class="ps-1 pe-2"><%= workout.difficulty.titleize %></span>
+          </div>
+        </div>
+          <%= link_to "View", admin_workout_path(workout), class: "btn btn-primary inline" %>
+          <%= link_to "Edit", edit_admin_workout_path(workout), class: "btn btn-secondary inline" %>
+          <%= button_to "Delete", admin_workout_path(workout), method: :delete, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>

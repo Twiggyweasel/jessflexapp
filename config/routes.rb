@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :plan_workouts, only: %i[destroy]
     resources :users
     resources :workouts do
-      resources :workout_activities, only: %i[show new create]
+      resources :workout_activities, only: %i[show new create destroy]
     end
     resources :workout_activities, only: %i[destroy]
     get '/dashboard', to: "pages#dashboard"

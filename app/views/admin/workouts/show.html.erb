@@ -19,7 +19,7 @@
     </div>
   </div>
   <div class="row my-2">
-    <div class="col-6">
+    <div class="col-4">
       <div class="card" style="width: 18rem;">
         <div class="card-header d-flex justify-content-between align-content-center">
           <div class='pt-1'>Activities</div>
@@ -28,18 +28,29 @@
           <% end %>
         </div>
         <ul class="list-group list-group-flush" data-controller="list-active-item" data-list-active-item-active-class="active">
-          <% @workout.workout_activities.each do |workout_activity| %>
-            <a href="#" class="list-group-item" data-action="list-active-item#activate loader#fetch" data-list-active-item-target="link" data-loader-target="selection" data-record="<%= workout_activity.id %>"><%= workout_activity.activity.name %></a>
-            <tr>
-              <td></td>
-              </tr>
+          <% if @workout.workout_activities.size > 0 %>
+            <% @workout.workout_activities.each_with_index do |workout_activity, i|  %>
+              <% if i == 0 %>
+                <a href="#" class="list-group-item active" data-action="list-active-item#activate loader#fetch" data-list-active-item-target="link" data-loader-target="selection" data-record="<%= workout_activity.id %>"><%= workout_activity.activity.name %></a>
+              <% else %>
+                <a href="#" class="list-group-item" data-action="list-active-item#activate loader#fetch" data-list-active-item-target="link" data-loader-target="selection" data-record="<%= workout_activity.id %>"><%= workout_activity.activity.name %></a>
+              <% end %>
+            <% end %>
+          <% else %>
+            <div class="list-group-item">Please add an activity</div>
           <% end %>
         </ul>
       </div>
 
     </div>
-    <div class="col-6">
-      <div id="activity-container" data-loader-target="container">Test</div>
+    <div class="col-8">
+      <div id="activity-container" data-loader-target="container">
+        <% if @workout.workout_activities.size == 0 %>
+          <%= render partial: "admin/workout_activities/form", locals: { workout: @workout, workout_activity: WorkoutActivity.new } %>
+        <% else %>
+          <%= render partial: 'admin/workout_activities/workout_activity', locals: { workout_activity: @workout.workout_activities.first }  %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
