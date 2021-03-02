@@ -25,9 +25,9 @@ Activity.create(name: "Side Lunge", simple_desc: "this is a simple description",
 Machine.create(name: "Rowing Machine")
 
 # workouts
-Workout.create(title: "Workout 1", description: "this is a simple description", bundle_only: true, status: "active", price: 0, difficulty: Workout.difficulties.keys[0], time: 600)
+Workout.create(title: "Workout 1", description: "this is a simple description", status: "active", difficulty: Workout.difficulties.keys[0], duration: 600)
 
-Workout.create(title: "Workout 2", description: "this is a simple description", bundle_only: true, status: "active", price: 0, difficulty: Workout.difficulties.keys[0], time: 600)
+Workout.create(title: "Workout 2", description: "this is a simple description", status: "active", difficulty: Workout.difficulties.keys[0], duration: 600)
 
 
 

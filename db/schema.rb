@@ -154,11 +154,9 @@ ActiveRecord::Schema.define(version: 2021_02_05_031657) do
   end
 
   create_table "workouts", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.string "description"
-    t.boolean "bundle_only", default: true
-    t.integer "time", default: 10
-    t.integer "price", default: 0
+    t.integer "duration", default: 10
     t.integer "difficulty", default: 0
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
