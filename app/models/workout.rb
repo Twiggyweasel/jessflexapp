@@ -17,13 +17,15 @@ class Workout < ApplicationRecord
   validates :title, presence: true, length: { in: 6..30 }
   validates :description, length: { in: 6..150 }
   validates :difficulty, presence: true, inclusion: { in: Workout.difficulties.keys }
-  # validates :price, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 10_000 }
   validates :status, presence: true, inclusion: { in: Workout.statuses.keys }
   validates :duration, presence: true, numericality: { greater_than_or_equal_to: 60, less_than_or_equal_to: 3600 }
-  # validates :bundle_only, inclusion: { in: [true, false] }
 
   # models
   def duration_label
     ActiveSupport::Duration.build(duration).inspect
+  end
+
+  def duration_in_minutes
+    duration / 60
   end
 end

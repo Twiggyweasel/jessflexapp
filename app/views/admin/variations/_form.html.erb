@@ -6,7 +6,7 @@
 <div class="row mb-2" data-controller="slider">
   <%= f.label :set, class: "form-label" %>
   <div class="col">
-    <input type="range" class="form-range" min="1" max="10" value="1" id="customRange2" data-slider-target="range" data-action="change->slider#label">
+    <input type="range" class="form-range" min="1" max="10" value="1" id="setRange" data-slider-target="range" data-action="change->slider#label">
   </div>
   <div class="col-3">
     <%= f.number_field :set, class: 'form-control', value: 1, "data-slider-target": "field", "data-action": "change->slider#slider"%>
@@ -25,7 +25,7 @@
   <div class="row mb-2" data-controller="slider">
     <%= f.label :weight, class: "form-label" %>
     <div class="col">
-      <input type="range" class="form-range" min="5" max="250" step="5" value="5" id="repRange" data-slider-target="range" data-action="change->slider#label">
+      <input type="range" class="form-range" min="5" max="250" step="5" value="5" id="weightRange" data-slider-target="range" data-action="change->slider#label">
     </div>
     <div class="col-3">
       <%= f.number_field :weight, class: "form-control", value: 5, step: 5,"data-slider-target": "field", "data-action": "change->slider#slider" %>

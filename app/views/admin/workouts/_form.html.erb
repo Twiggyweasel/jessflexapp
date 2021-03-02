@@ -6,15 +6,19 @@
     <%= f.label :title, class: 'form-label' %>
     <%= f.text_field :title, class: 'form-control' %>
   </div>
-
-  <div class="mb-3">
-    <%= f.label :description, class: 'form-label' %>
-    <%= f.rich_text_area :description %>
+  <div class="row mb-3">
+    <div class="col">
+      <%= f.label :description, class: 'form-label' %>
+      <%= f.rich_text_area :description %>    
+    </div>
   </div>
-  <div class="mb-3">
-    <div class="form-check">
-      <%= f.check_box :bundle_only, class: 'form-check-input' %>
-      <%= f.label :bundle_only, class: 'form-check-label' %>
+  <div class="row mb-3" data-controller="slider">
+    <%= f.label :duration, "Duration (Minutes)",class: 'form-label' %>
+    <div class="col">
+      <input type="range" class="form-range" min="5" max="60" step="5" value="<%= workout.new_record? ? 5 : workout.duration_in_minutes %>" id="durationRange" data-slider-target="range" data-action="change->slider#label">
+    </div>
+    <div class="col-3">
+      <%= f.number_field :duration, class: 'form-control', value: workout.new_record? ? 5 : workout.duration_in_minutes, "data-slider-target": "field", "data-action": "change->slider#slider"%>
     </div>
   </div>
   <div class="mb-3">

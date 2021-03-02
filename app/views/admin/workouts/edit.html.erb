@@ -1,2 +1,16 @@
-<h1>Edit Workout</h1>
-<%= render partial: "form", locals: { workout: @workout } %>
+<div class="container">
+  <div class="row justify-content-center my-5">
+    <div class="col">
+      <div class="card shadow-sm form-border">
+      <% # TODO: "move border-radius for card to a class" %>
+        <div class="card-body">
+          <h1 class="mx-3">Edit Workout</h1>
+          <div class="card-text m-4">
+            <%= render partial: "form", locals: { workout: @workout} %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
