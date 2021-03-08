@@ -21,11 +21,6 @@
       <%= f.number_field :duration, class: 'form-control', value: workout.new_record? ? 5 : workout.duration_in_minutes, "data-slider-target": "field", "data-action": "change->slider#slider"%>
     </div>
   </div>
-  <div class="mb-3">
-    <%= f.label :status %>
-    <%= f.select :status, options_for_select(Workout.statuses.keys.map { |key| [key.titleize, key] }, f.object.status), { placeholder: 'Select a status' } ,class: 'form-select' %>
-  </div>
-
   <%= f.submit class: 'btn btn-success'%>
   <%= link_to "Cancel", workout.new_record? ? admin_workouts_path : admin_workout_path(workout), class: "btn btn-outline-secondary" %>
 <% end %>

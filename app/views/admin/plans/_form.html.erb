@@ -14,8 +14,10 @@
   <%= f.label :difficulty %>
   <%= f.select :difficulty, Plan.difficulties.keys.map { |key| [key.humanize, key] } %>
   </br>
+  <% unless @plan.new_record? %>
   <%= f.label :status %>
   <%= f.select :status, Plan.statuses.keys.map { |key| [key.humanize, key]} %>
+  <% end %>
   </br>
   <%= f.submit %>
 <% end %>

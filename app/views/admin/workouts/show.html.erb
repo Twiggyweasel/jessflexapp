@@ -1,7 +1,10 @@
 <div class="container" data-controller="loader" data-loader-show-value="/admin/workouts/<%= @workout.id %>/workout_activities/" data-loader-form-value="/admin/workouts/<%= @workout.id %>/workout_activities/new">
   <div class="row">
     <div class="col">
-      <h1><%= @workout.title %></h1>
+      <h1 class='d-inline'><%= @workout.title %></h1>
+        <% if @workout.status != "active" %>
+          <div>This workout is inactive and can't be added to plans <%= button_to("Activate", admin_workout_activations_path(@workout), method: :create, class: "btn btn-success") %></div>
+        <% end %>   
     </div>
   </div>
   <div class="row">
@@ -10,6 +13,8 @@
       <i class="fal fa-stopwatch mx-1"></i><span class="ps-1 pe-2"><%= @workout.duration_label %></span>
       |
       <i class="fal fa-mountain mx-1"></i><span class="ps-1 pe-2"><%= @workout.difficulty.titleize %></span>
+      |
+      <span class="badge bg-<%= if @workout.status == "active" then "success" else "danger" end %>"><%= @workout.status.titleize %></span>
     </div>
   </div>
   <div class="row">
@@ -54,6 +59,8 @@
     </div>
   </div>
 </div>
+
+
 
 
 

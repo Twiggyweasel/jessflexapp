@@ -18,11 +18,10 @@ module Admin
 
       respond_to do |format|
         if @plan.save
-          flash[:notice] = "plan was successfully created."
-          format.html { redirect_to([:admin, @plan]) }
+          format.html { redirect_to [:admin, @plan], success: "Plan successfully created." }
           format.xml { render xml: @plan, status: :created, location: @plan }
         else
-          format.html { render :new }
+          format.html { render :new, status: :unprocessable_entity }
           format.xml { render xml: @plan.errors, status: :unprocessable_entity }
         end
       end

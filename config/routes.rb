@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :plan_workouts, only: %i[destroy]
     resources :users
     resources :workouts do
+      resources :activations, only: %i[create destroy], module: :workouts
       resources :workout_activities, only: %i[show new create destroy]
     end
     resources :workout_activities, only: %i[destroy]
