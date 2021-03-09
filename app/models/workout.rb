@@ -22,15 +22,21 @@ class Workout < ApplicationRecord
 
   # methods
   def activatable?
-    true unless workout_activities.size.zero?
+    return true unless workout_activities.size.zero?
 
     false
   end
 
   def activation_needed?
-    true if activatable? && status != "active"
+    return true if activatable? && inactive?
 
     false
+  end
+
+  def check_activation
+    return if activatable?
+
+    deactivate_workout
   end
 
   def duration_label

@@ -21,7 +21,7 @@ json.array! @series do |series|
           json.id series.activity.id
           json.name series.activity.name
         end
-     end
+      end
     end
   end
 end

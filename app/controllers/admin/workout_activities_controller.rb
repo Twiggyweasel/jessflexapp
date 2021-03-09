@@ -7,10 +7,14 @@ module Admin
       render json: { html: render_to_string(partial: @workout_activity) }
       # render json: { html: render_to_string('show'), layout: false }
     end
+
     def new
       @workout_activity = WorkoutActivity.new
 
-      render json: { html: render_to_string(partial: 'form', locals: { workout: @workout, workout_activity: @workout_activity }), layout: false }
+      render json: {
+        html: render_to_string(partial: "form",
+                               locals: { workout: @workout, workout_activity: @workout_activity }), layout: false
+      }
     end
 
     def create
@@ -30,15 +34,15 @@ module Admin
       @workout_activity.destroy
       redirect_to admin_workout_path(@workout_activity.workout)
     end
-  
+
     private
 
-      def set_workout
-        @workout = Workout.find(params[:workout_id])
-      end
+    def set_workout
+      @workout = Workout.find(params[:workout_id])
+    end
 
-      def workout_activity_params
-        params.require(:workout_activity).permit(:workout_id, :activity_id, :series_id, :variation_id, :difficulty)
-      end
+    def workout_activity_params
+      params.require(:workout_activity).permit(:workout_id, :activity_id, :series_id, :variation_id, :difficulty)
+    end
   end
 end

@@ -1,10 +1,21 @@
 <div class="container" data-controller="loader" data-loader-show-value="/admin/workouts/<%= @workout.id %>/workout_activities/" data-loader-form-value="/admin/workouts/<%= @workout.id %>/workout_activities/new">
   <div class="row">
+    <div class="col-12">
+      <% if @workout.activation_needed? %>
+        <div class="alert alert-warning">
+          This workout is inactive and can't be added to plans <%= button_to("Activate", admin_workout_activations_path(@workout), method: :create, class: "btn btn-success") %>
+          
+        </div>
+      <% elsif !@workout.activatable? %>
+        <div class="alert alert-warning">
+          This workout needs some activities before it can be activated.
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
     <div class="col">
-      <h1 class='d-inline'><%= @workout.title %></h1>
-        <% if @workout.status != "active" %>
-          <div>This workout is inactive and can't be added to plans <%= button_to("Activate", admin_workout_activations_path(@workout), method: :create, class: "btn btn-success") %></div>
-        <% end %>   
+      <h1><%= @workout.title %></h1>
     </div>
   </div>
   <div class="row">

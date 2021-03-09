@@ -8,4 +8,10 @@ class WorkoutActivity < ApplicationRecord
   enum difficulty: WORKOUT_ACTIVITY_DIFFICULTIES
 
   validates :difficulty, presence: true, inclusion: { in: WorkoutActivity.difficulties.keys }
+
+  after_destroy :workout_activation_check
+
+  def workout_activation_check
+    workout.check_activation
+  end
 end

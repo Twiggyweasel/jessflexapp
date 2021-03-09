@@ -18,7 +18,7 @@ module Admin
 
       respond_to do |format|
         if @workout.save
-          format.html { redirect_to admin_workout_path(@workout), success:  "Workout successfully created" }
+          format.html { redirect_to admin_workout_path(@workout), success: "Workout successfully created" }
           format.json { render :show, status: :created, location: @workout }
         else
           format.html { render :new, status: :unprocessable_entity }

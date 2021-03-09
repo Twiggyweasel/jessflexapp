@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityVariationsController < ApplicationController
   before_action :set_activity_variation, only: %i[show edit update destroy]
 
@@ -28,7 +26,7 @@ class ActivityVariationsController < ApplicationController
 
     respond_to do |format|
       if @activity_variation.save
-        format.html { redirect_to @activity_variation, notice: 'Activity variation was successfully created.' }
+        format.html { redirect_to @activity_variation, notice: "Activity variation was successfully created." }
         format.json { render :show, status: :created, location: @activity_variation }
       else
         format.html { render :new }
@@ -42,7 +40,7 @@ class ActivityVariationsController < ApplicationController
   def update
     respond_to do |format|
       if @activity_variation.update(activity_variation_params)
-        format.html { redirect_to @activity_variation, notice: 'Activity variation was successfully updated.' }
+        format.html { redirect_to @activity_variation, notice: "Activity variation was successfully updated." }
         format.json { render :show, status: :ok, location: @activity_variation }
       else
         format.html { render :edit }
@@ -56,7 +54,7 @@ class ActivityVariationsController < ApplicationController
   def destroy
     @activity_variation.destroy
     respond_to do |format|
-      format.html { redirect_to activity_variations_url, notice: 'Activity variation was successfully destroyed.' }
+      format.html { redirect_to activity_variations_url, notice: "Activity variation was successfully destroyed." }
       format.json { head :no_content }
     end
   end

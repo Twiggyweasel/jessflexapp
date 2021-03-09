@@ -3,7 +3,7 @@ module Admin
     layout "admin"
     before_action :set_activity
     before_action :set_variation, only: %i[show edit update destroy]
-    def index 
+    def index
       @variations = @activity.variations
 
       respond_to do |format|
@@ -11,6 +11,7 @@ module Admin
         format.json { @variations.to_json }
       end
     end
+
     def show; end
 
     def new
@@ -21,15 +22,17 @@ module Admin
       @variation = @activity.variations.build(variation_params)
       respond_to do |format|
         if @variation.save
-          format.turbo_stream {
+          format.turbo_stream do
             render turbo_stream: turbo_stream.prepend("variations", @variation)
-          }
+          end
           format.html { redirect_to admin_activity_path(@activity), success: "Variation successfully created" }
           format.json { render :show, status: :created, location: @activity }
         else
-          format.turbo_stream {
-            render turbo_stream: turbo_stream.replace("variation-form", partial: "admin/variations/form", locals: { activity: @activity, variation: @variation })
-          }
+          format.turbo_stream do
+            render turbo_stream: turbo_stream.replace("variation-form",
+                                                      partial: "admin/variations/form",
+                                                      locals: { activity: @activity, variation: @variation })
+          end
           format.html { render :new, status: :unprocessable_entity }
           format.json { render json: @variation.errors, status: :unprocessable_entity }
         end
