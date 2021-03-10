@@ -1,2 +1,15 @@
-<h1>Update Machine</h1>
-<%= render partial: "form", locals: { machine: @machine } %>
+<div class="container">
+  <div class="row justify-content-center my-5">
+    <div class="col-md-8">
+      <div class="card shadow-sm form-border" >
+        <div class="card-body">
+          <h1 class="mx-3">Update Machine</h1>
+          <hr />
+          <div class="card-text m-4">
+            <%= render partial: "form", locals: { machine: @machine } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
