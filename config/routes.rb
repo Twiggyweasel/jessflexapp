@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
   
   resources :plans, only: %i[index show]
-  resources :activities
-  root "plans#index"
+  resources :activities, only: %i[index show]
+  root "pages#home"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
