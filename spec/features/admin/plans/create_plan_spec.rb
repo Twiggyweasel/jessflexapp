@@ -8,7 +8,7 @@ RSpec.describe "Creating a plan", type: :feature do
     fill_in "Description", with: "This is a fake decription"
     fill_in "Price", with: 1_000
     select("Beginner", from: "Difficulty")
-    select("Hidden", from: "Status")
+    
     click_on "Create Plan"
     visit admin_plans_path
     expect(page).to have_content("Fake Plan")

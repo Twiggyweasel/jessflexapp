@@ -61,7 +61,7 @@ Activity.last.variations.create(description: "This is a test")
 #   end
 # end
 
-# Plan.create(title: "BOOTY-FULL GAINS", description: "This is a test description", price: 4999, status: Plan.statuses.keys[1], difficulty: Plan.difficulties.keys[1] )
+Plan.create(title: "BOOTY-FULL GAINS", description: "This plan is meant to train your glutes, hamstrings, and quads. you should select new work out every day and try not to repeat.", price: 4999, status: Plan.statuses.keys[1], difficulty: Plan.difficulties.keys[1] )
 
-# PlanWorkout.create(plan: Plan.first, workout: Workout.first)
+PlanWorkout.create(plan: Plan.first, workout: Workout.first)
 # PlanWorkout.create(plan: Plan.first, workout: Workout.second)

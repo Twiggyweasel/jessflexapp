@@ -1,12 +1,19 @@
 <div class="col-4">
-  <div class="card">
+  <div class="card shadow-sm">
     <div class="card-body">
       <div class="card-title">
         <h4><%= plan.title %></h4>
+        <hr />
       </div>
       <div class="card-text">
-        <%= link_to "view", admin_plan_path(plan), class: "btn btn-primary" %>
+        <p>
+          <%= plan.description %>
+        </p>
+        <%= link_to "View", admin_plan_path(plan), class: "btn btn-primary" %>
       </div>
+    </div>
+    <div class="card-footer">
+      <%= display_currency(plan.price) %> | <%= pluralize(plan.workouts.size, "Workout") %> | <%= plan.status.titleize %>
     </div>
   </div>
 </div>

@@ -1,4 +1,18 @@
-<h1>Plans</h1>
-<div class="row">
-  <%= render @plans %>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>Plans</h1>
+      <hr />
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-12">
+      <%= link_to "Create Plan", new_admin_plan_path, class: "btn btn-success" %>
+    </div>
+  </div>
+  <div class="row">
+    <%= render @plans %>
+  </div>
 </div>
+
+
