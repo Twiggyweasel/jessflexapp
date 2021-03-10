@@ -1,5 +1,11 @@
 require "rails_helper"
 
 RSpec.describe Activity, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject(:activity) { create(:activity) }
+
+  context "with valid inputs" do
+    it "will be valid" do
+      expect(activity).to be_valid
+    end
+  end
 end

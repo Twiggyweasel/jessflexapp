@@ -34,11 +34,13 @@ class Workout < ApplicationRecord
   end
 
   def check_activation
-    return if activatable?
+    return true if inactive?
+    return true if activatable?
 
     deactivate_workout
   end
 
+  # TODO: move to a helper method
   def duration_label
     ActiveSupport::Duration.build(duration).inspect
   end
@@ -48,11 +50,14 @@ class Workout < ApplicationRecord
   end
 
   def activate_workout
-    update_column(:status, Workout.statuses.keys[0])
+    return true if active?
+
+    activatable? ? update_column(:status, Workout.statuses.keys[0]) : (raise StandardError, "Unable to activate a workout wihout activities")
   end
 
   def deactivate_workout
-    # TODO: add removal from existing plans
+    return true if inactive?
+
     update_column(:status, Workout.statuses.keys[1])
   end
 end

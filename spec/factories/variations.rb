@@ -1,9 +1,8 @@
 FactoryBot.define do
   factory :variation do
-    difficulty { 1 }
+    description { "Testing description" }
+    # difficulty { Variation.difficulties.keys[0] }
     weight { 1 }
-    set { 1 }
-    rep { 1 }
-    activity { nil }
+    activity
   end
 end

@@ -1,5 +1,11 @@
 require "rails_helper"
 
 RSpec.describe WorkoutActivity, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject(:workout_activity) { create(:workout_activity) }
+
+  context "with valid inputs" do
+    it "will be valid" do
+      expect(workout_activity).to be_valid
+    end
+  end
 end
