@@ -6,7 +6,7 @@ module Admin
     # GET /activities
     # GET /activities.json
     def index
-      @activities = Activity.all
+      @pagy, @activities = pagy(Activity.all, max_items: 5)
     end
 
     # GET /activities/1

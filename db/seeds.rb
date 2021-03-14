@@ -3,8 +3,8 @@
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
+#   Character.create(name: "Luke", movie: movies.first)
 
 # activities
 Activity.create(name: "Side to Side Crawls", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 0, set_label: 0, has_weight: false, machine_based: false)
@@ -65,3 +65,49 @@ Plan.create(title: "BOOTY-FULL GAINS", description: "This plan is meant to train
 
 PlanWorkout.create(plan: Plan.first, workout: Workout.first)
 # PlanWorkout.create(plan: Plan.first, workout: Workout.second)
+
+list_of_actvities = [
+  "Bent Over Rows",
+  "Deadlifts",
+  "Lat Pulls",
+  "Cable Rows",
+  "Good-Mornings",
+  "Pull-ups",
+  "Concentrated Curls",
+  "Side Curls",
+  "Cable Curls",
+  "Cable Close Grip Curls",
+  "Skull Crushers",
+  "Cable Extensions",
+  "Close Grip Bench Press",
+  "Single-Handed Bent Extensions",
+  "Concentrated Cable Extensions",
+  "Flat Bench Press",
+  "Incline Bench Press",
+  "Decline Bench Press",
+  "Lower Cable Extensions",
+  "Upper Cable Extensions",
+  "Fly Machine",
+  "Shoulder Press",
+  "Front Raises",
+  "Side Raises",
+  "Squat",
+  "Leg Raises",
+  "Leg Presses",
+  "Leg Curls",
+  "Calves Raises",
+  "Crunches",
+  "Hanging Leg Raises",
+  "Planks",
+  "Weighted Sided Standing Crunches",
+  "Interval Sprints",
+  "Lunges",
+  "Push-ups",
+  "Biking",
+  "Burpees",
+  "Full Lap Runs"
+]
+
+list_of_actvities.each do |a|
+  Activity.create(name: a, simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 0, set_label: 0, has_weight: false, machine_based: false)
+end
