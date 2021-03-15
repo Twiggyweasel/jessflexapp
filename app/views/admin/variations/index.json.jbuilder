@@ -12,10 +12,10 @@ json.array! @variations do |variation|
       json.updated_at variation.updated_at
     end
     json.relationships do
-      json.activity do
+      json.exercise do
         json.data do
-          json.id variation.activity.id
-          json.name variation.activity.name
+          json.id variation.exercise.id
+          json.name variation.exercise.name
         end
       end
     end

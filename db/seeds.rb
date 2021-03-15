@@ -7,19 +7,19 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 # activities
-Activity.create(name: "Side to Side Crawls", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 0, set_label: 0, has_weight: false, machine_based: false)
-Activity.create(name: "Squat & Curtsey", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 0, set_label: 0, has_weight: false, machine_based: false)
-Activity.create(name: "Fire Hydrants", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 0, set_label: 0, has_weight: false, machine_based: false)
-Activity.create(name: "Reverse Lunges", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 0, set_label: 0, has_weight: false, machine_based: false)
-Activity.create(name: "Burpees", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 1, set_label: 0, has_weight: false, machine_based: false)
+Exercise.create(name: "Side to Side Crawls", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 0, set_label: 0, has_weight: false, machine_based: false)
+Exercise.create(name: "Squat & Curtsey", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 0, set_label: 0, has_weight: false, machine_based: false)
+Exercise.create(name: "Fire Hydrants", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 0, set_label: 0, has_weight: false, machine_based: false)
+Exercise.create(name: "Reverse Lunges", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 0, set_label: 0, has_weight: false, machine_based: false)
+Exercise.create(name: "Burpees", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 1, set_label: 0, has_weight: false, machine_based: false)
 
-Activity.create(name: "Step Ups", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 1, set_label: 0, has_weight: false, machine_based: false)
+Exercise.create(name: "Step Ups", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 1, set_label: 0, has_weight: false, machine_based: false)
 
-Activity.create(name: "Squat & Raise Leg", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 1, set_label: 0, has_weight: false, machine_based: false)
+Exercise.create(name: "Squat & Raise Leg", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 1, set_label: 0, has_weight: false, machine_based: false)
 
-Activity.create(name: "Pulse Squats", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 1, set_label: 0, has_weight: false, machine_based: false)
+Exercise.create(name: "Pulse Squats", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 1, set_label: 0, has_weight: false, machine_based: false)
 
-Activity.create(name: "Side Lunge", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 1, set_label: 0, has_weight: false, machine_based: false)
+Exercise.create(name: "Side Lunge", simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 1, set_label: 0, has_weight: false, machine_based: false)
 
 # machines 
 Machine.create(name: "Rowing Machine")
@@ -35,18 +35,18 @@ Workout.create(title: "Workout 2", description: "this is a simple description", 
 
 sets = [4, 4, 4, 4, 3, 4, 4, 4, 4]
 reps = [12, 12, 12, 12, 10, 12, 12, 20, 12]
-activity = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+exercise = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 count = 0
 9.times do 
-  Series.create(set: sets[count], rep: reps[count], activity: Activity.find(activity[count]))
+  Series.create(set: sets[count], rep: reps[count], exercise: Exercise.find(exercise[count]))
   count += 1
 end  
 
-Activity.all.each do |activity|
-  Variation.create(description: "NA", activity: activity)
+Exercise.all.each do |exercise|
+  Variation.create(description: "NA", exercise: exercise)
 end
 
-Activity.last.variations.create(description: "This is a test")
+# Exercise.last.variations.create(description: "This is a test")
 
 # # workout_variations
 # count = 0
@@ -66,7 +66,7 @@ Plan.create(title: "BOOTY-FULL GAINS", description: "This plan is meant to train
 PlanWorkout.create(plan: Plan.first, workout: Workout.first)
 # PlanWorkout.create(plan: Plan.first, workout: Workout.second)
 
-list_of_actvities = [
+list_of_exercises = [
   "Bent Over Rows",
   "Deadlifts",
   "Lat Pulls",
@@ -108,6 +108,6 @@ list_of_actvities = [
   "Full Lap Runs"
 ]
 
-list_of_actvities.each do |a|
-  Activity.create(name: a, simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 0, set_label: 0, has_weight: false, machine_based: false)
+list_of_exercises.each do |e|
+  Exercise.create(name: e, simple_desc: "this is a simple description", detail_desc: "this is the detailed description", location: 1, category: 0, set_label: 0, has_weight: false, machine_based: false)
 end

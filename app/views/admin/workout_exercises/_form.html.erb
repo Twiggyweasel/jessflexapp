@@ -1,33 +1,33 @@
-<div class="container" data-controller="activity-select">
+<div class="container" data-controller="exercise-select">
   <div class="card">
     <div class="card-body">
       <div class="card-text">
         <div class="row" >
           <div class="col">
-            <%- if workout_activity.errors.any? %>
-              <%= render partial: "shared/form_errors", locals: { errors: workout_activity.errors.full_messages } %>
+            <%- if workout_exercise.errors.any? %>
+              <%= render partial: "shared/form_errors", locals: { errors: workout_exercise.errors.full_messages } %>
             <% end %>
           </div>
         </div>
         <div class="row">
-          <%= form_with(model: [:admin, workout, workout_activity]) do |f| %>
+          <%= form_with(model: [:admin, workout, workout_exercise]) do |f| %>
             <div class="mb-3">
-              <%= f.label :activity_id, "Activity", class: "form-label" %>
-              <%= f.select(:activity_id, options_for_select(Activity.all.map { |a| [a.name, a.id] }), { prompt: "Select an Activity" } , { class: "form-select", data: { "activity-select-target": "activity", action: "change->activity-select#getSeries activity-select#getVariations activity-select#clearDropdowns"}}) %>
+              <%= f.label :activity_id, "Exercise", class: "form-label" %>
+              <%= f.select(:activity_id, options_for_select(Exercise.all.map { |a| [a.name, a.id] }), { prompt: "Select an Exercise" } , { class: "form-select", data: { "exercise-select-target": "exercise", action: "change->exercise-select#getSeries exercise-select#getVariations exercise-select#clearDropdowns"}}) %>
             </div>
             <div class="mb-3">
               <%= f.label :series_id, "Series", class: "form-label" %>
-              <%= f.select(:series_id, "", { prompt: "You must select an Activity..." }, { class: "form-select", data: { "activity-select-target": "series" } }) %>
+              <%= f.select(:series_id, "", { prompt: "You must select an Exercise..." }, { class: "form-select", data: { "exercise-select-target": "series" } }) %>
          
             </div>
             <div class="mb-3">
               <%= f.label :variation_id, "Variation", class: "form-label" %>               
-              <%= f.select(:variation_id, "", { prompt: "You must select an Activity..." }, { class: "form-select", data: { "activity-select-target": "variations" } }) %>  
+              <%= f.select(:variation_id, "", { prompt: "You must select an Exercise..." }, { class: "form-select", data: { "exercise-select-target": "variations" } }) %>  
             </div>
             <div class="mb-3">
               <%= f.label :difficulty, class: "form-label" %>
               <br>
-              <% WorkoutActivity.difficulties.keys.each do |key| %>
+              <% WorkoutExercise.difficulties.keys.each do |key| %>
                 <div class="form-check form-check-inline">
                   <%= f.radio_button :difficulty, key, class: "form-check-input" %>
                   <%= f.label "difficulty_" + key, key.titleize, class: "form-check-label" %>

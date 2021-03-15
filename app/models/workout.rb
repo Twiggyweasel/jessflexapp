@@ -9,9 +9,9 @@ class Workout < ApplicationRecord
   enum status: WORKOUT_STATUSES
 
   # associations
-  has_many :workout_activities, dependent: :destroy
-  has_many :variations, through: :workout_activities
-  has_many :activities, through: :variations
+  has_many :workout_exercises, dependent: :destroy
+  has_many :variations, through: :workout_exercises
+  has_many :exercises, through: :workout_exercises
 
   # validations
   validates :title, presence: true, length: { in: 6..30 }
@@ -22,7 +22,7 @@ class Workout < ApplicationRecord
 
   # methods
   def activatable?
-    return true unless workout_activities.size.zero?
+    return true unless workout_exercises.size.zero?
 
     false
   end

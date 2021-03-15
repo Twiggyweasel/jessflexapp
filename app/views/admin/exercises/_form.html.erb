@@ -1,6 +1,6 @@
-<%= form_with(model: [:admin, activity]) do |f| %>
-  <%- if activity.errors.any? %>
-    <%= render partial: "shared/form_errors", locals: { errors: @activity.errors.full_messages } %>
+<%= form_with(model: [:admin, exercise]) do |f| %>
+  <%- if exercise.errors.any? %>
+    <%= render partial: "shared/form_errors", locals: { errors: @exercise.errors.full_messages } %>
   <% end %>
   <div class="mb-3">
     <%= f.label :name, class: "form-label" %>
@@ -19,15 +19,15 @@
   <div class="row mb-3">
     <div class="col">
       <%= f.label :location, class: "form-label" %>
-      <%= f.select(:location, Activity.locations.keys.map { |location| [location.titleize, location]}, { }, class: "form-select") %>
+      <%= f.select(:location, Exercise.locations.keys.map { |location| [location.titleize, location]}, { }, class: "form-select") %>
     </div>
     <div class="col">
       <%= f.label :category, class: "form-label" %>
-      <%= f.select(:category, Activity.categories.keys.map { |category| [category.titleize, category]}, { }, class: "form-select") %>   
+      <%= f.select(:category, Exercise.categories.keys.map { |category| [category.titleize, category]}, { }, class: "form-select") %>   
     </div>
     <div class="col">
       <%= f.label :set_label, class: "form-label" %>
-      <%= f.select(:set_label, Activity.set_labels.keys.map { |label| [label.titleize, label]}, { } , class: "form-select") %>
+      <%= f.select(:set_label, Exercise.set_labels.keys.map { |label| [label.titleize, label]}, { } , class: "form-select") %>
     </div>
   </div>
   <div class="row mb-3">
@@ -46,7 +46,7 @@
   </div>
   <div class="actions">
     <%= f.submit class: "btn btn-success" %>
-    <%= link_to "Cancel", activity.new_record? ? admin_activities_path : admin_activity_path(activity), class: "btn btn-secondary" %>
+    <%= link_to "Cancel", exercise.new_record? ? admin_exercises_path : admin_exercise_path(exercise), class: "btn btn-secondary" %>
   </div>
 <% end %>
 

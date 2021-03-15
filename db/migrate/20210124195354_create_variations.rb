@@ -4,7 +4,7 @@ class CreateVariations < ActiveRecord::Migration[6.1]
       t.text :description
       t.integer :weight
 
-      t.belongs_to :activity, null: false, foreign_key: true
+      t.belongs_to :exercise, null: false, foreign_key: true
 
       t.timestamps
     end

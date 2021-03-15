@@ -1,0 +1,47 @@
+<%= render partial: "shared/breadcrumbs" %>
+<div class="container">
+  <div class="row justify-content-between align-items-center">
+    <div class="col">
+        <h1>Exercises</h1>
+    </div>
+    <div class="col text-end">
+      <%= link_to 'New Exercise', new_admin_exercise_path, class: "btn btn-success" %>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Category</th>
+          <th>Set label</th>
+          <th>Has weight</th>
+          <th>Machine based</th>
+          <th>Variations</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @exercises.each do |exercise| %>
+          <tr>
+            <td><%= exercise.name %></td>
+            <td><%= exercise.location %></td>
+            <td><%= exercise.category %></td>
+            <td><%= exercise.set_label %></td>
+            <td><%= exercise.has_weight %></td>
+            <td><%= exercise.machine_based %></td>
+            <td><%= exercise.variations.size %></td>
+            <td><%= link_to 'Show', [:admin, exercise] %></td>
+            <td><%= link_to 'Edit', edit_admin_exercise_path(exercise) %></td>
+            <td><%= link_to 'Destroy', [:admin, exercise], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+      <%== pagy_bootstrap_nav(@pagy) %>
+  </div>
+</div>
+
+

@@ -1,6 +1,6 @@
 class Series < ApplicationRecord
-  belongs_to :activity
-  has_many :workout_activities, dependent: :nullify
+  belongs_to :exercise
+  has_many :workout_exercises, dependent: :nullify
 
   validates :rep, presence: true,
                   numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 50 }

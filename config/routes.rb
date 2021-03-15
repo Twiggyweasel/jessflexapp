@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-    resources :activities do 
+    resources :exercises do 
       resources :variations
       resources :series
     end
@@ -13,9 +13,9 @@ Rails.application.routes.draw do
     resources :users
     resources :workouts do
       resources :activations, only: %i[create destroy], module: :workouts
-      resources :workout_activities, only: %i[show new create destroy]
+      resources :workout_exercises, only: %i[show new create destroy]
     end
-    resources :workout_activities, only: %i[destroy]
+    resources :workout_exercises, only: %i[destroy]
     get '/dashboard', to: "pages#dashboard"
     resources :series
   end

@@ -12,14 +12,14 @@ json.array! @series do |series|
       json.updated_at series.updated_at
     end
     json.relationships do
-      json.activity do
+      json.exercise do
         json.links do
-          json.self admin_activity_url(series.activity)
+          json.self admin_exercise_url(series.exercise)
         end
         json.data do
-          json.type "activity"
-          json.id series.activity.id
-          json.name series.activity.name
+          json.type "exercise"
+          json.id series.exercise.id
+          json.name series.exercise.name
         end
       end
     end

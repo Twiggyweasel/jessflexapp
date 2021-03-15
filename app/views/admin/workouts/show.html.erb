@@ -8,7 +8,7 @@
         </div>
       <% elsif !@workout.activatable? %>
         <div class="alert alert-warning">
-          This workout needs some activities before it can be activated.
+          This workout needs some exercises before it can be activated.
         </div>
       <% end %>
     </div>
@@ -38,22 +38,22 @@
     <div class="col-4">
       <div class="card" style="width: 18rem;">
         <div class="card-header d-flex justify-content-between align-content-center">
-          <div class='pt-1'>Activities</div>
+          <div class='pt-1'>Exercises</div>
           <%= link_to("#", class: "btn btn-sm", data: { action: "loader#fetch", "loader-target": "selection", record: 0 }) do %>
             <i class="fal fa-plus"></i>
           <% end %>
         </div>
         <ul class="list-group list-group-flush" data-controller="list-active-item" data-list-active-item-active-class="active">
-          <% if @workout.workout_activities.size > 0 %>
-            <% @workout.workout_activities.each_with_index do |workout_activity, i|  %>
+          <% if @workout.workout_exercises.size > 0 %>
+            <% @workout.workout_exercises.each_with_index do |workout_exercise, i|  %>
               <% if i == 0 %>
-                <a href="#" class="list-group-item active" data-action="list-active-item#activate loader#fetch" data-list-active-item-target="link" data-loader-target="selection" data-record="<%= workout_activity.id %>"><%= workout_activity.activity.name %></a>
+                <a href="#" class="list-group-item active" data-action="list-active-item#activate loader#fetch" data-list-active-item-target="link" data-loader-target="selection" data-record="<%= workout_exercise.id %>"><%= workout_exercise.exercise.name %></a>
               <% else %>
-                <a href="#" class="list-group-item" data-action="list-active-item#activate loader#fetch" data-list-active-item-target="link" data-loader-target="selection" data-record="<%= workout_activity.id %>"><%= workout_activity.activity.name %></a>
+                <a href="#" class="list-group-item" data-action="list-active-item#activate loader#fetch" data-list-active-item-target="link" data-loader-target="selection" data-record="<%= workout_exercise.id %>"><%= workout_exercise.exercise.name %></a>
               <% end %>
             <% end %>
           <% else %>
-            <div class="list-group-item">Please add an activity</div>
+            <div class="list-group-item">Please add an exercise</div>
           <% end %>
         </ul>
       </div>
@@ -61,10 +61,10 @@
     </div>
     <div class="col-8">
       <div id="activity-container" data-loader-target="container">
-        <% if @workout.workout_activities.size == 0 %>
-          <%= render partial: "admin/workout_activities/form", locals: { workout: @workout, workout_activity: WorkoutActivity.new } %>
+        <% if @workout.workout_exercises.size == 0 %>
+          <%= render partial: "admin/workout_exercises/form", locals: { workout: @workout, workout_exercise: WorkoutExercise.new } %>
         <% else %>
-          <%= render partial: 'admin/workout_activities/workout_activity', locals: { workout_activity: @workout.workout_activities.first }  %>
+          <%= render partial: 'admin/workout_exercises/workout_exercise', locals: { workout_exercise: @workout.workout_exercises.first }  %>
         <% end %>
       </div>
     </div>

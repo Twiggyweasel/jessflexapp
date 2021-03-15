@@ -2,14 +2,14 @@ import { Controller } from 'stimulus';
 import Rails from '@rails/ujs';
 
 export default class extends Controller {
-  static targets = ["activity", "series", "variations"]
+  static targets = ["exercise", "series", "variations"]
 
   initialize() {
 
   }
 
-  get activity() {
-    return this.activityTarget.value;
+  get exercise() {
+    return this.exerciseTarget.value;
   }
 
   get series() {
@@ -23,7 +23,7 @@ export default class extends Controller {
   getSeries() {
     Rails.ajax({
       type: "GET",
-      url: '/admin/activities/' + this.activity + '/series.json',
+      url: '/admin/exercises/' + this.exercise + '/series.json',
       success: (data) => {
         this.updateSeriesDropdown(data)
       },
@@ -34,7 +34,7 @@ export default class extends Controller {
   getVariations() {
     Rails.ajax({
       type: "GET",
-      url: '/admin/activities/' + this.activity + '/variations.json',
+      url: '/admin/exercises/' + this.exercise + '/variations.json',
       success: (data) => {
         this.updateVariationsDropdown(data)
       },

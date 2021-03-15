@@ -1,6 +1,6 @@
-class CreateActivities < ActiveRecord::Migration[6.1]
+class CreateExercises < ActiveRecord::Migration[6.1]
   def change
-    create_table :activities do |t|
+    create_table :exercises do |t|
       t.string :name
       t.string :simple_desc
       t.string :detail_desc
@@ -13,6 +13,6 @@ class CreateActivities < ActiveRecord::Migration[6.1]
       t.timestamps
     end
 
-    add_index :activities, :name, unique: true
+    add_index :exercises, :name, unique: true
   end
 end

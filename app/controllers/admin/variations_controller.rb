@@ -1,10 +1,10 @@
 module Admin
   class VariationsController < ApplicationController
     layout "admin"
-    before_action :set_activity
+    before_action :set_exercise
     before_action :set_variation, only: %i[show edit update destroy]
     def index
-      @variations = @activity.variations
+      @variations = @exercise.variations
 
       respond_to do |format|
         format.html { render :index }
@@ -15,11 +15,11 @@ module Admin
     def show; end
 
     def new
-      @variation = @activity.variations.build
+      @variation = @exercise.variations.build
     end
 
     def create
-      @variation = @activity.variations.build(variation_params)
+      @variation = @exercise.variations.build(variation_params)
       respond_to do |format|
         if @variation.save
           format.turbo_stream do
@@ -44,8 +44,8 @@ module Admin
     def update
       respond_to do |format|
         if @variation.update(variation_params)
-          format.html { redirect_to admin_activity_path(@activity), success: "Variation successfully updated" }
-          format.json { render :show, status: :ok, location: @activity }
+          format.html { redirect_to admin_activity_path(@exercise), success: "Variation successfully updated" }
+          format.json { render :show, status: :ok, location: @exercise }
         else
           format.html { render :edit, status: :unprocessable_entity }
           format.json { render json: @variation.errors, status: :unprocessable_entity }
@@ -55,13 +55,13 @@ module Admin
 
     def destroy
       @variation.destroy
-      redirect_to admin_activity_path(@activity)
+      redirect_to admin_activity_path(@exercise)
     end
 
     private
 
-    def set_activity
-      @activity = Activity.find(params[:activity_id])
+    def set_exercise
+      @exercise = Exercise.find(params[:exercise_id])
     end
 
     def set_variation

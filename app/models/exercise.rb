@@ -1,5 +1,5 @@
 # defines the defaults for an activity record to be used in variates and workouts
-class Activity < ApplicationRecord
+class Exercise < ApplicationRecord
   # relationships
   has_one :machine_activity, dependent: :destroy
   has_one :machine, through: :machine_activity

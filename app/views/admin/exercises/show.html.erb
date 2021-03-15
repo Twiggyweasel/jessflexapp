@@ -1,0 +1,54 @@
+<%= render partial: "shared/breadcrumbs" %>
+<div class="container">
+  <div class="row">
+    <h1>Exercise: <%= @exercise.name %></h1>
+    <div class="row">
+      <div class="col">
+        <h3>Detail Description</h3>
+        <p><%= @exercise.detail_desc %></p>
+      </div>
+      <div class="col">
+        <h3>Attributes</h3>
+        <ul class="list-group">
+          <li class="list-group-item">Location: <%= @exercise.location %></li>
+          <li class="list-group-item">Category: <%= @exercise.category %></li>
+          <li class="list-group-item">Set Label: <%= @exercise.set_label %></li>
+          <li class="list-group-item">Has Weight: <%= @exercise.has_weight %></li>
+          <li class="list-group-item">Machine based: <%= @exercise.machine_based %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <%
+=begin%>
+ <div class="row">
+    <h3>Variations</h3>
+    <div class="col">
+        <table class="table">
+          <thead>
+            <%- if @exercise.has_weight %><th>Weight</th><% end %>
+            <th>Set</th>
+            <th>Reps</th>
+            <th>Difficulty</th>
+            <th colspan='2'>actions</th>
+          </thead>
+          <tbody id="variations">
+            <%= render @exercise.variations %>
+          </tbody>
+        </table>
+        <% if !@exercise.variations.any? %>  
+          <div class="alert alert-info" role="alert">
+            No Variations found!
+          </div>
+        <% end %>
+    </div>
+    <div class="col">
+      <%= turbo_frame_tag "new_variation", src: new_admin_activity_variation_path(@exercise), target: "_top" %>
+    </div>
+  </div> 
+<%
+=end%>
+</div>
+
+
+
