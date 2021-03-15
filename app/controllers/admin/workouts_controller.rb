@@ -2,15 +2,21 @@ module Admin
   class WorkoutsController < ApplicationController
     layout "admin"
     before_action :set_workout, only: %i[show edit update destroy]
+    before_action :set_breadcrumbs
 
     def index
       @workouts = Workout.all
+
+      add_breadcrumb("Workouts")
     end
 
-    def show; end
+    def show 
+      add_breadcrumb("Workout - #{@workout.id}")
+    end
 
     def new
       @workout = Workout.new
+      add_breadcrumb("New Workout")
     end
 
     def create
@@ -27,7 +33,10 @@ module Admin
       end
     end
 
-    def edit; end
+    def edit
+      add_breadcrumb("Workout - #{@workout.id}", admin_workout_path(@workout))
+      add_breadcrumb("Edit Workout")
+    end
 
     def update
       respond_to do |format|
@@ -54,6 +63,11 @@ module Admin
 
     def workout_params
       params.require(:workout).permit(:title, :description, :bundle_only, :status)
+    end
+
+    def set_breadcrumbs
+      add_breadcrumb("Admin", admin_dashboard_path)
+      add_breadcrumb("Workouts", admin_workouts_path) unless params[:action] == "index"
     end
   end
 end

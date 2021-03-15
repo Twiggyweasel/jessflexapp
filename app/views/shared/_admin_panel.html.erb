@@ -1,24 +1,15 @@
-<div class='container mt-3 position-sticky' style="top: 74px;">
-  <h2>Admin</h2>
-  <ul class="nav flex-column text-sm-start">
-    <li class="nav-item">
-      <%= link_to(admin_exercises_path, class: "nav-link") do %>
-        <i class="fad fa-running"></i> Exercises
-      <% end %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "Machines", admin_machines_path, class: "nav-link" %>
-    </li>
-        <li class="nav-item">
-          <%= link_to(admin_plans_path, class: "nav-link") do %>
-            <i class="fad fa-clipboard-list"></i> Plans
-          <% end %>
-     
-    </li>
-    <li class="nav-item">
-      <%= link_to(admin_workouts_path, class: "nav-link") do %>
-        <i class="fad fa-dumbbell"></i> Workouts
-      <% end %>
-    </li>
-  </ul>
-</div>
+<nav class="navbar fixed-top navbar-light bg-light" style='margin-top: 56px;'>
+  <div class="container-fluid justify-content-center">
+    <ul class="nav navbar-nav flex-row">
+      <li class="nav-item">
+        <%= link_to "Excerises", admin_exercises_path, class: "nav-link p-0 px-1" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Workouts", admin_workouts_path, class: "nav-link p-0 px-1" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Plans", admin_plans_path, class: "nav-link p-0 px-1" %>
+      </li>
+    </ul>
+  </div>
+</nav>

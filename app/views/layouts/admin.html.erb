@@ -11,16 +11,8 @@
 
   <body>
     <%= render partial: "shared/header", locals: { admin: true } %>
-    <div class="container-fluid" style="min-height: 100vh">
-      <div class="row" style="min-height: 100vh;">
-        <div class="col bg-light text-center border-end" style="background-color: red; min-width: 200px; max-width: 200px; min-height: 100%;">
-          <%= render partial: "shared/admin_panel" %>
-        </div>
-        <div class="col">
-          <%= render partial: "shared/messages" if flash.any? %>
-          <%= yield %>
-        </div>
-      </div>
-    </div>
+    <%= render partial: "shared/messages" if flash.any? %>
+    <%= render partial: "shared/breadcrumbs" %>
+    <%= yield %>
   </body>
 </html>

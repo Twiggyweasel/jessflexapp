@@ -1,5 +1,14 @@
 <header class="navbar fixed-top navbar-dark bg-dark">
   <div class="container-fluid d-flex justify-content-center">
-    <%= link_to "JessFlex", admin ? admin_dashboard_path : root_path, class: "navbar-brand" %>
+    <% if admin %>
+      <%= link_to "JessFlex(ADMIN)", admin_dashboard_path, class: "navbar-brand" %>
+      
+    <% else %>
+      <%= link_to "JessFlex", root_path, class: "navbar-brand" %>
+    <% end %>
   </div>
 </header>
+
+<% if admin %>
+  <%= render partial: 'shared/admin_panel' %>
+<% end %>

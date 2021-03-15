@@ -2,15 +2,22 @@ module Admin
   class PlansController < ApplicationController
     layout "admin"
     before_action :set_plan, only: %i[show edit update destroy]
+    before_action :set_breadcrumbs
 
     def index
       @plans = Plan.all
+
+      add_breadcrumb("Plans")
     end
 
-    def show; end
+    def show
+      add_breadcrumb("Plan - #{@plan.id}")
+    end
 
     def new
       @plan = Plan.new
+
+      add_breadcrumb("New Plan")
     end
 
     def create
@@ -27,7 +34,10 @@ module Admin
       end
     end
 
-    def edit; end
+    def edit
+      add_breadcrumb("Plan - #{@plan.id}")
+      add_breadcrumb("Edit Plan")
+    end
 
     def update
       if @plan.update(plan_params)
@@ -55,6 +65,11 @@ module Admin
 
     def plan_params
       params.require(:plan).permit(:title, :description, :status, :price, :difficulty)
+    end
+
+    def set_breadcrumbs
+      add_breadcrumb("Admin", admin_dashboard_path)
+      add_breadcrumb("Plans", admin_plans_path) unless params[:action] == "index"
     end
   end
 end
