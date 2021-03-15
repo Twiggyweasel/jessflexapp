@@ -1,5 +1,14 @@
 class ApplicationController < ActionController::Base
-  add_flash_types :success, :danger
   include Pagy::Backend
 
+  add_flash_types :success, :danger
+  helper_method :breadcrumbs
+
+  def breadcrumbs
+    @breadcrumbs ||= []
+  end
+
+  def add_breadcrumb(name, path = nil)
+    breadcrumbs << Breadcrumb.new(name, path)
+  end
 end

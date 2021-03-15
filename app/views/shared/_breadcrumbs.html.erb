@@ -1,0 +1,23 @@
+<div class="container">
+<div class="row mt-3">
+  <div class="col-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <% breadcrumbs.each do |crumb| %>
+          <% if crumb == breadcrumbs.last %>
+            <li class="breadcrumb-item active"aria-current="page">
+          <% else %>
+            <li class="breadcrumb-item">
+          <% end %>
+            <% if crumb.link? %>
+              <%= link_to crumb.name, crumb.path %>
+            <% else %>
+              <%= content_tag(:span, crumb.name) %>
+            <% end %>
+          </li>
+        <% end %>
+      </ol>
+    </nav>
+  </div>
+</div>
+</div>

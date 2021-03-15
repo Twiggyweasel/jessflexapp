@@ -2,24 +2,33 @@ module Admin
   class ActivitiesController < ApplicationController
     layout "admin"
     before_action :set_activity, only: %i[show edit update destroy]
+    before_action :set_breadcrumbs
 
     # GET /activities
     # GET /activities.json
     def index
-      @pagy, @activities = pagy(Activity.all, max_items: 5)
+      @pagy, @activities = pagy(Activity.includes(:variations).all, max_items: 5)
+
+      add_breadcrumb("Activities")
     end
 
     # GET /activities/1
     # GET /activities/1.json
-    def show; end
+    def show 
+      add_breadcrumb("Activity")
+    end
 
     # GET /activities/new
     def new
       @activity = Activity.new
+      add_breadcrumb("New Activity")
     end
 
     # GET /activities/1/edit
-    def edit; end
+    def edit
+      add_breadcrumb("Activity", [:admin, @activity])
+      add_breadcrumb("Edit Activity")
+    end
 
     # POST /activities
     # POST /activities.json
@@ -72,6 +81,11 @@ module Admin
     def activity_params
       params.require(:activity).permit(:name, :simple_desc, :detail_desc, :location, :category, :set_label,
                                        :has_weight, :machine_based)
+    end
+
+    def set_breadcrumbs
+      add_breadcrumb("Admin", admin_dashboard_path)
+      add_breadcrumb("Activities", admin_activities_path) unless params[:action] == "index"
     end
   end
 end
