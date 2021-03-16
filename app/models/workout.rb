@@ -52,7 +52,13 @@ class Workout < ApplicationRecord
   def activate_workout
     return true if active?
 
-    activatable? ? update_column(:status, Workout.statuses.keys[0]) : (raise StandardError, "Unable to activate a workout wihout activities")
+    if activatable?
+      update_column(:status,
+                    Workout.statuses.keys[0])
+    else
+      (raise StandardError,
+             "Unable to activate a workout wihout activities")
+    end
   end
 
   def deactivate_workout

@@ -1,4 +1,4 @@
-class Breadcrumb 
+class Breadcrumb
   attr_reader :name, :path
 
   def initialize(name, path)
