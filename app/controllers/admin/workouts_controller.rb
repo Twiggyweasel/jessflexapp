@@ -10,7 +10,7 @@ module Admin
       add_breadcrumb("Workouts")
     end
 
-    def show 
+    def show
       add_breadcrumb("Workout - #{@workout.id}")
     end
 

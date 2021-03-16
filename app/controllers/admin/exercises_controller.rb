@@ -14,7 +14,7 @@ module Admin
 
     # GET /exercises/1
     # GET /exercises/1.json
-    def show 
+    def show
       add_breadcrumb("Exercise")
     end
 
