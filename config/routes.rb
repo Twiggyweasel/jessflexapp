@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   resources :plans, only: %i[index show]
   resources :activities, only: %i[index show]
-  root "pages#home"
+
+  devise_for :users
+  root "plans#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

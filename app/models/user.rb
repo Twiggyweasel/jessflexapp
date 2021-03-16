@@ -1,13 +1,18 @@
-# defines all items related to users of the app
 class User < ApplicationRecord
-  has_many :plan_users, dependent: :destroy
-  has_many :plans, through: :plan_users
+  USER_ROLES = %i[admin user].freeze
+  
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
 
-  def full_name
-    "#{first_name} #{last_name}"
-  end
+  enum role: USER_ROLES
 
-  def membership_used?
-    plan_users.any?
+  has_many :user_plans
+
+  def has_role?(role)
+    return true if self.role.to_sym == role
+
+    false
   end
 end

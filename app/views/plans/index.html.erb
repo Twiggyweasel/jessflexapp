@@ -1,7 +1,6 @@
 <h1>Plans</h1>
 <%- @plans.each do |plan| %>
   <%= plan.title %>
-  <%= link_to "Edit", edit_plan_path(plan) %>
   <%= link_to 'Destroy', plan_path(plan), method: :delete, data: { confirm: "Are you sure?"} %>
   </br>
 <% end %>
