@@ -1,20 +1,39 @@
-<%= form_with(model: [:admin, exercise]) do |f| %>
-  <%- if exercise.errors.any? %>
+<%= form_with(model: [:admin, exercise], html: { class: "needs-validation", novalidate: true }) do |f| %>
+  <%
+=begin%>
+ <%- if exercise.errors.any? %>
     <%= render partial: "shared/form_errors", locals: { errors: @exercise.errors.full_messages } %>
-  <% end %>
+  <% end %> 
+<%
+=end%>
   <div class="mb-3">
     <%= f.label :name, class: "form-label" %>
-    <%= f.text_field :name, class: "form-control" %>
+    <%= f.text_field :name, class: "form-control", required: true %>
+    <% if exercise.errors.where(:name).any? %>
+      <%== invalid_field(exercise.errors.where(:name).first.full_message) %>
+    <% elsif !f.object.name.nil? %>
+      <%== valid_field %>
+    <% end %>
   </div>
 
   <div class="mb-3">
     <%= f.label :simple_desc, class: "form-label" %>
     <%= f.text_area :simple_desc, class: "form-control" %>
+    <% if exercise.errors.where(:simple_desc).any? %>
+      <%== invalid_field(exercise.errors.where(:simple_desc).first.full_message) %>
+    <% elsif !f.object.name.nil? %>
+      <%== valid_field %>
+    <% end %>    
   </div>
 
   <div class="mb-3">
     <%= f.label :detail_desc, class: "form-label" %>
     <%= f.text_area :detail_desc, class: "form-control" %>
+    <% if exercise.errors.where(:detail_desc).any? %>
+      <%== invalid_field(exercise.errors.where(:detail_desc).first.full_message) %>
+    <% elsif !f.object.name.nil? %>
+      <%== valid_field %>
+    <% end %>    
   </div>
   <div class="row mb-3">
     <div class="col">

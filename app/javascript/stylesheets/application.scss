@@ -13,3 +13,25 @@ body {
 .button_to {
   display: inline;
 }
+
+.valid-field {
+  width: 100%;
+  margin-top: .25rem;
+  font-size: .875em;
+  color: #198754;
+}
+
+.invalid-field {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: #dc3545;
+}
+
+.field-with-errors {
+  box-sizing: none;
+
+  .form-control {
+    border-color: #dc3545;
+  }
+}
